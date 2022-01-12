@@ -1,0 +1,22 @@
+.container1 {
+    height: 80px;
+    position: relative;
+    display: flex;
+}
+.container2 { 
+    height: 150px;
+    position: relative;
+    display: flex;
+}
+.container3 { 
+    height: 150px;
+    position: relative;
+    display: flex;
+}
+.answercenter {
+    position: absolute;
+    width: 200px;
+    top: 10;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
