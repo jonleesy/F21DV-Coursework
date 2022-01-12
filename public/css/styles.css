@@ -1,13 +1,41 @@
 body {
-    background-color: powderblue;
+    background-color: rgb(226, 238, 240);
     align-self: center;
 }
-h1 {
-    color: blue;
-}
-p {
-    color: red;
+header {
+    text-align: center;
+    margin-top: 15%;
+    margin-bottom: auto;
+    font-size: x-large;
+    letter-spacing: 1px;
 }
 button {
     display: block;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    text-align: center;
+    padding: 12px 32px;
+    transition-duration: 0.1s;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+.buttonori {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+.buttonori:hover {
+    background-color: #555555;
+    color: white;
+}
+.container { 
+    height: 200px;
+    position: relative;
+    display: flex;
+}
+.center {
+    position: absolute;
+    top: 10;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }

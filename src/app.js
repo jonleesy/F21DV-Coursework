@@ -1,17 +1,23 @@
-var http = require('http');
-var fs = require('fs');
+const express = require('express');
+const http = require('http');
+const path = require('path');
 
-const PORT = 5553; 
+// Using port 5553 as part of student ID
+const port = 5553;
 
-fs.readFile('./public/index.html', function (err, html) {
+// init app and server
+var app = express();
+var server = http.createServer(app);
 
-    if (err) throw err;    
+// the app responds with index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
-    http.createServer(function(request, response) {  
-        response.writeHeader(200, {"Content-Type": "text/html"});  
-        response.write(html);  
-        response.end();  
-    }).listen(PORT, function() {
-      console.log('Server running at http://localhost:' + PORT + '/')
-    });
+// Files stored statically in public folder
+app.use(express.static(path.join(__dirname, '../public/')));
+
+// server listens on port 5553 for connections
+server.listen(port, () => {
+  console.log(`Listening on http://localhost:${port}`);
 });
