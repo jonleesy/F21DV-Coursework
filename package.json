@@ -1,0 +1,24 @@
+{
+  "name": "f21dv-coursework",
+  "version": "1.0.0",
+  "description": "f21dv four-part coursework",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "npm run start:server",
+    "start:server": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonleesy/F21DV-Coursework.git"
+  },
+  "author": "Jonathan Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonleesy/F21DV-Coursework/issues"
+  },
+  "homepage": "https://github.com/jonleesy/F21DV-Coursework#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
