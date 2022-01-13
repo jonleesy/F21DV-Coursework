@@ -1,28 +1,11 @@
-.container1 {
-    height: 90px;
-    position: relative;
-    display: flex;
-}
-.container2 { 
-    height: 160px;
-    position: relative;
-    display: flex;
-}
-.container3 { 
-    height: 260px;
-    position: relative;
-    display: flex;
-}
-.container4 { 
-    height: 140px;
-    position: relative;
-    display: flex;
-}
-.container5 { 
-    height: 90px;
-    position: relative;
-    display: flex;
-}
+.container1 {height: 90px;  position: relative; display: flex;}
+.container2 {height: 160px; position: relative; display: flex;}
+.container3 {height: 260px; position: relative; display: flex;}
+.container4 {height: 140px; position: relative; display: flex;}
+.container5 {height: 90px;  position: relative; display: flex;}
+.container6 {height: 130px; position: relative; display: flex;}
+.container7 {height: 155px; position: relative; display: flex;}
+
 .task4button {
     margin-top: -10px;
 }
