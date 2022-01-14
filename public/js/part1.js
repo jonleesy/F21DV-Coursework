@@ -125,10 +125,65 @@ selected8.data(data8).enter()
         .text(function (d, i) {
             return d
         })
-        .style('color', function (d, i) {
+        .style('color', 'white')
+        .style('background-color', function (d, i) {
             if (typeof d === 'string') {
                 return 'blue'
             } else {
                 return 'green'
             }
-        })
+        });
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::        
+// ::::::::: Starting from Exercise 9, new divs are created using d3.js ::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+/**
+ * Function takes params taskid and height, and creates new divs and sections
+ * systematically for each exercise.
+ * @param {*} taskid The id of Exercise
+ * @param {*} height Height of Div for said Exercise
+ */
+const createdivs = function(taskid, height) {
+    d3.select('body').append('div')
+        .attr('class', 'container' + taskid)
+        .attr('height', height + 'px')
+        .attr('position', 'relative')
+        .attr('display', 'flex');
+    d3.select('.container' + taskid).append('div')
+        .attr('class', 'answercenter')
+        .append('p').append('strong')
+        .text('Exercise ' + taskid + ':');
+};
+
+// Exercise 9
+createdivs(9, 200);
+// Importing the given titanic data.
+let data9 = 'https://raw.githubusercontent.com/dsindy/kaggle-titanic/master/data/test.csv';
+d3.csv(data9, function() {
+    let selection9 = d3.select('container9').select('answercenter')
+    let countObj = {}
+    data9.forEach(function(d) {
+        var name = d.name
+        if (name.substring(0, 2) === 'Mr') {
+            if (countObj[male] === undefined) {
+                countObj[male] = 1
+            } else {
+                countObj[male] = countObj[male] + 1
+            }
+        } else if (name.substring(0, 3) === 'Mrs') {
+            if (countObj[female] === undefined) {
+                countObj[female] = 1
+            } else {
+                countObj[female] = countObj[female] + 1
+            }
+        } else {
+            if (countObj[others] === undefined) {
+                countObj[others] = 1
+            } else {
+                countObj[others] = countObj[others] + 1
+            }
+        }
+    });
+    selection9.append('p')
+        .text(countObj.toString())
+});
