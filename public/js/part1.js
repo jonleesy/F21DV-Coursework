@@ -245,19 +245,19 @@ d3.csv(data10).then(function(data) {
 // Exercise 11
 // Systematically creating divs for new exercise
 createdivs(11, 200)
-// Generalised d3 svg div selection
+// Generalised d3 svg div selection.
 let svg11 = d3.select('.container11').select('.answercenter');
 // Data Points for square lines.
 let data11 = [{x:[0,200],   y:[0,0],     'color':'red'},
               {x:[200,200], y:[0,200],   'color':'blue'},
               {x:[200,0],   y:[200,200], 'color':'purple'},
               {x:[0,0],     y:[200,0],   'color':'green'}];
-// Create SVG element
+// Create SVG element.
 svg11.append('svg')
     .attr('width', 200)
     .attr('height', 200)
     .style('border', '6px solid yellow')
-//Create line element inside SVG, using data points from data11
+// Create line element inside SVG, using data points from data11.
 for (let key in data11) {
     svg11.select('svg').append("line")
         .attr("x1", data11[key]['x'][0])
