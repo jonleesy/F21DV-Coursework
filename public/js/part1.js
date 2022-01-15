@@ -159,10 +159,10 @@ const createdivs = function(taskid, height) {
 createdivs(9, 200);
 // Importing the given titanic data.
 let data9 = 'https://raw.githubusercontent.com/dsindy/kaggle-titanic/master/data/test.csv';
-d3.csv(data9, function() {
+d3.csv(data9, function(d) {
     let selection9 = d3.select('container9').select('answercenter')
     let countObj = {}
-    data9.forEach(function(d) {
+    data.forEach(function(d) {
         var name = d.name
         if (name.substring(0, 2) === 'Mr') {
             if (countObj[male] === undefined) {
