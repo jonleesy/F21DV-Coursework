@@ -271,22 +271,32 @@ createdivs(12, 280)
 let data12 = '../data/part1/task12.csv';
 // Selected div
 const selected12 = d3.select('.container12').select('.answercenter')
+// Appending an SVG.
 selected12.append("svg") 
     .attr("width",  200) 
     .attr("height", 200) 
     .style("border", '1px solid green'); 
 d3.csv(data12).then(function(d) {
+    // Iterate through all rows, each row holds attr for their respective shapes.
     for (let key in d) {
+        // Selecting the svg element each time a new csv row is selected, 
+        // and appending a new svg item based on the 'name' given.
         let tempSelected = selected12.select('svg').append(d[key]['name'])
+        // Iterate through the columns of each row.
         for (let key2 in d[key]) {
-            i = 0
+            // Checking to make sure if its not a 'name', then update each attribute. 
+            // Checks are also done to make sure that no attribute update is done,
+            // if said column is empty (this item has no use of such attribute).
             if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'text' && key !== 'columns') {
+                // Using [key][key2]-value pair to update the attribute.
                 try {
                     tempSelected = tempSelected.attr(key2, d[key][key2]);
                 } catch(err) {
                     console.log(key, key2, d[key][key2])
                     console.log( err.message);
                 }
+            // Else-if is used for 'text' since text is updated using 'text' field,
+            // and not the 'attr' field.
             } else if (key2 === 'text') {
                 try {
                     tempSelected = tempSelected.text(d[key][key2])
