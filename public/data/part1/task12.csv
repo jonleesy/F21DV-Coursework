@@ -1,0 +1,5 @@
+name,width,height,x,y,cx,cy,r,rx,ry,stroke,text,fill,border
+rect,200,100,0,0,,,,,,,,pink,
+cicle,,250,50,50,,,,,,
+elipse,,,,,250,50,,150,50,,,,
+text,,,150,50,,,,,,#fff,sometext,,

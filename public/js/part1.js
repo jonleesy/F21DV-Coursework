@@ -32,7 +32,7 @@ for (let i=1; i < 11; i++) {
         })
         .style('text-align', 'center') // Align text for each div to center.
         .text(i.toString()); // For each iteration, i is the text for that div.
-};
+}
 
 // Exercise 4
 // d3 to select 'task4button' and add an event listener that listens
@@ -76,10 +76,6 @@ let otherdata = [{name:'test', val:1, color:'red'},
 d3.select('.container6').select('.answercenter').selectAll('div')
     .data(otherdata)
     .text(function (d, i) {
-        // console.log('d.name: ' + d.name);
-        // console.log('d.val: ' + d.val);
-        // console.log('i: ' + i); 
-        // console.log('this: ' + this);
         return i+1 + '. cont: ' + d.name + '; color: ' + d.color; // return value is used to set the 'text'
     })
     .style('color', function (d, i) {
@@ -92,7 +88,7 @@ const selected7 = d3.select('.container7').select('.answercenter');
 // Using d3, we populate container 7 with 4 divs.
 for (let i=0; i < 4; i++) {
     selected7.append('div')
-};
+}
 // Given number array.
 let num = [10, 50, 100, 200];
 // Using the selected, provide data (num) for data() function.  
@@ -218,7 +214,7 @@ d3.csv(data10).then(function(data) {
             old ++; 
         } else {
             veryold ++;
-        };
+        }
     });
     // Select the correct divs, then select all <p> (which are not present), 
     // and by using enter(), we create new <p>s that were not present. Once
@@ -244,7 +240,7 @@ d3.csv(data10).then(function(data) {
 
 // Exercise 11
 // Systematically creating divs for new exercise
-createdivs(11, 200)
+createdivs(11, 280)
 // Generalised d3 svg div selection.
 let svg11 = d3.select('.container11').select('.answercenter');
 // Data Points for square lines.
@@ -267,3 +263,36 @@ for (let key in data11) {
         .attr("stroke-width", 12)
         .attr("stroke", data11[key]['color'])
 }
+
+// Exercise 12
+// Systematic initialisation.
+createdivs(12, 200)
+// Read Csv
+let data12 = '../data/part1/task12.csv';
+// Selected div
+const selected12 = d3.select('.container12').select('.answercenter')
+selected12.append("svg") 
+    .attr("width",  200) 
+    .attr("height", 200) 
+    .style("border", '1px solid green'); 
+d3.csv(data12).then(function(d) {
+    // let tempSelected = selected12
+    for (let key in d) {
+        let tempSelected = selected12.select('svg').append(d[key]['name'])
+        for (let key2 in d[key]) {
+            i = 0
+            while (i < d.length) {
+                console.log(key, key2, d[key][key2])
+                if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'border' && key2 !== 'text') {
+                    tempSelected = tempSelected.attr(key2, d[key][key2])
+                } else if (key2 === 'border') {
+                    tempSelected = tempSelected.style(key2, d[key][key2])
+                } else if (key2 === 'text') {
+                    tempSelected = tempSelected.text(d[key][key2])
+                }
+                i ++;
+            }
+            
+        }
+    }
+})
