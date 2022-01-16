@@ -266,7 +266,7 @@ for (let key in data11) {
 
 // Exercise 12
 // Systematic initialisation.
-createdivs(12, 200)
+createdivs(12, 280)
 // Read Csv
 let data12 = '../data/part1/task12.csv';
 // Selected div
@@ -276,23 +276,25 @@ selected12.append("svg")
     .attr("height", 200) 
     .style("border", '1px solid green'); 
 d3.csv(data12).then(function(d) {
-    // let tempSelected = selected12
     for (let key in d) {
         let tempSelected = selected12.select('svg').append(d[key]['name'])
         for (let key2 in d[key]) {
             i = 0
-            while (i < d.length) {
-                console.log(key, key2, d[key][key2])
-                if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'border' && key2 !== 'text') {
-                    tempSelected = tempSelected.attr(key2, d[key][key2])
-                } else if (key2 === 'border') {
-                    tempSelected = tempSelected.style(key2, d[key][key2])
-                } else if (key2 === 'text') {
-                    tempSelected = tempSelected.text(d[key][key2])
+            if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'text' && key !== 'columns') {
+                try {
+                    tempSelected = tempSelected.attr(key2, d[key][key2]);
+                } catch(err) {
+                    console.log(key, key2, d[key][key2])
+                    console.log( err.message);
                 }
-                i ++;
+            } else if (key2 === 'text') {
+                try {
+                    tempSelected = tempSelected.text(d[key][key2])
+                } catch(err) {
+                    console.log(key, key2, d[key][key2])
+                    console.log(err.message);
+                }
             }
-            
         }
     }
 })
