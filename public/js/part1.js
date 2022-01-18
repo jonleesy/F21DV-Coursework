@@ -255,56 +255,130 @@ svg11.append('svg')
     .style('border', '6px solid yellow')
 // Create line element inside SVG, using data points from data11.
 for (let key in data11) {
-    svg11.select('svg').append("line")
-        .attr("x1", data11[key]['x'][0])
-        .attr("x2", data11[key]['x'][1])
-        .attr("y1", data11[key]['y'][0])
-        .attr("y2", data11[key]['y'][1])
-        .attr("stroke-width", 12)
-        .attr("stroke", data11[key]['color'])
+    svg11.select('svg').append('line')
+        .attr('x1', data11[key]['x'][0])
+        .attr('x2', data11[key]['x'][1])
+        .attr('y1', data11[key]['y'][0])
+        .attr('y2', data11[key]['y'][1])
+        .attr('stroke-width', 12)
+        .attr('stroke', data11[key]['color'])
 }
 
 // Exercise 12
 // Systematic initialisation.
 createdivs(12, 280)
 // Read Csv
-let data12 = '../data/part1/task12.csv';
+const data12 = d3.csv('../data/part1/task12.csv');
 // Selected div
-const selected12 = d3.select('.container12').select('.answercenter')
+let selected12 = d3.select('.container12').select('.answercenter')
 // Appending an SVG.
-selected12.append("svg") 
-    .attr("width",  200) 
-    .attr("height", 200) 
-    .style("border", '1px solid green'); 
-d3.csv(data12).then(function(d) {
-    // Iterate through all rows, each row holds attr for their respective shapes.
-    for (let key in d) {
-        // Selecting the svg element each time a new csv row is selected, 
-        // and appending a new svg item based on the 'name' given.
-        let tempSelected = selected12.select('svg').append(d[key]['name'])
-        // Iterate through the columns of each row.
-        for (let key2 in d[key]) {
-            // Checking to make sure if its not a 'name', then update each attribute. 
-            // Checks are also done to make sure that no attribute update is done,
-            // if said column is empty (this item has no use of such attribute).
-            if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'text' && key !== 'columns') {
-                // Using [key][key2]-value pair to update the attribute.
-                try {
-                    tempSelected = tempSelected.attr(key2, d[key][key2]);
-                } catch(err) {
-                    console.log(key, key2, d[key][key2])
-                    console.log( err.message);
-                }
-            // Else-if is used for 'text' since text is updated using 'text' field,
-            // and not the 'attr' field.
-            } else if (key2 === 'text') {
-                try {
-                    tempSelected = tempSelected.text(d[key][key2])
-                } catch(err) {
-                    console.log(key, key2, d[key][key2])
-                    console.log(err.message);
-                }
-            }
-        }
-    }
-})
+selected12
+    .append('svg') 
+        .attr('width',  200) 
+        .attr('height', 200) 
+        .style('border', '1px solid green')
+    .append('circle')
+        .attr('cx', 100)
+        .attr('cy', 50)
+        .attr('r', 50);
+// console.log(data12)
+// , d => `${d.name}${d.width}${d.height}${d.x}${d.y}${d.cx}${d.cy}${d.r}${d.rx}${d.ry}${d.stroke}${d.text}${d.fill}`
+selected12.select('svg').data(data12)
+    .selectAll(function(d) {
+        return d.name
+    })
+    .join(
+        enter => {
+            console.log(d.name)
+            enter.append(d.name)
+                .attr('cx', d.cx)
+                .attr('cy', d.cy)
+                .attr('fill', d.fill)
+                .attr('height', d.height)
+                .attr('r', d.r)
+                .attr('rx', d.rx)
+                .attr('ry', d.ry)
+                .attr('stroke', d.stroke)
+                .attr('width', d.width)
+                .attr('x', d.x)
+                .attr('y', d.y)
+        },
+        update => update,
+        exit => exit.remove()
+    )
+    .text(data12.text)
+// selected12 = selected12.select('svg');
+// // https://observablehq.com/@thetylerwolf/day-18-join-enter-update-exit
+// d3.csv(data12).then(function(d) {
+//     for (let key in d) {
+//         const keyArr = [];
+//         const valArr = [];
+//         for (let key2 in d[key]) {
+//             if (d[key][key2] !== '') {
+//                 keyArr.push(key2);
+//                 valArr.push(d[key][key2]);
+//             }
+//         }
+//         selected12.select('svg').selectAll(valArr[0])
+//             // .data({key:keyArr, val:valArr})
+//             .join(
+//                 enter => {
+//                     enter.append(valArr[0])
+//                         .attr(keyArr[1], valArr[1])
+//                         .attr(keyArr[2], valArr[2])
+//                         .attr(keyArr[3], valArr[3])
+//                         .attr(keyArr[4], valArr[4])
+//                         .attr(keyArr[5], valArr[5])
+//                     // let tempEnter = enter.append(valArr[0])
+//                     // for (let i = 1; i < keyArr.length; i++) {
+//                     //     console.log(keyArr[i], valArr[i])
+//                     //     tempEnter = tempEnter.attr(keyArr[i], valArr[i])
+//                     // }
+//                     // .data({key:keyArr, val:valArr})
+//                     // .attrs(function(dt) {
+//                     //     let msg = '';
+//                     //     for (let i = 1; i < dt['key'].length; i++) {
+//                     //         msg = msg + dt['key'][i] + ':' + dt['val'][i] + ',';
+//                     //     }
+//                     //     return msg.substring(0, msg.length-1)
+//                     // })
+//                 },
+//                 update => update
+//             )
+//             .exit()
+//             .remove()
+//     }
+//     // let tempSelected = selected12.selectAll(d[key]['name']) 
+// })
+// d3.csv(data12).then(function(d) {
+//     // Iterate through all rows, each row holds attr for their respective shapes.
+//     for (let key in d) {
+//         // Selecting the svg element each time a new csv row is selected, 
+//         // and appending a new svg item based on the 'name' given.
+//         let tempSelected = selected12.select('svg').append(d[key]['name'])
+//         // Iterate through the columns of each row.
+//         for (let key2 in d[key]) {
+//             // Checking to make sure if its not a 'name', then update each attribute. 
+//             // Checks are also done to make sure that no attribute update is done,
+//             // if said column is empty (this item has no use of such attribute).
+//             if (key2 !== 'name' && d[key][key2] !== '' && key2 !== 'text' && key !== 'columns') {
+//                 // Using [key][key2]-value pair to update the attribute.
+//                 try {
+//                     tempSelected = tempSelected.attr(key2, d[key][key2]);
+//                 } catch(err) {
+//                     console.log(key, key2, d[key][key2])
+//                     console.log(err.message);
+//                 }
+//             // Else-if is used for 'text' since text is updated using 'text' field,
+//             // and not the 'attr' field.
+//             } else if (key2 === 'text') {
+//                 try {
+//                     tempSelected = tempSelected.text(d[key][key2])
+//                 } catch(err) {
+//                     console.log(key, key2, d[key][key2])
+//                     console.log(err.message);
+//                 }
+//             }
+//         }
+//     }
+// })
