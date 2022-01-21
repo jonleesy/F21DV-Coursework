@@ -6,7 +6,7 @@ import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
 // Data for <p> population.
-const data = ['First', 'Second']
+const data = ['First', 'Second'];
 
 // Create two <p>s for modification.
 d3.select('.answerCenter')
