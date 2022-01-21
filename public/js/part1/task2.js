@@ -16,9 +16,7 @@ d3.select('.answerCenter')
         enter => enter.append('p')
                 .attr('id', 'task2')
                 .style('text-align', 'center')
-                .text(function (d, i) {
-                    return d + ' paragraph';
-                })
+                .text((d, _) => d + ' paragraph')
     );
 
 // Button for task action.
