@@ -5,7 +5,7 @@ const ex = 5;
 import {createDiv} from './functions.js';
 createDiv(ex);
 
-// Create two <p>s for modification.
+// Create <div> for chaining modification.
 d3.select('.answerCenter')
     .append('div')
         .style('text-align', 'center')

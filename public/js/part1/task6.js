@@ -5,12 +5,13 @@ const ex = 6;
 import {createDiv} from './functions.js';
 createDiv(ex);
 
-// Data for <p> population.
+// Data for <div>s' color.>
 const data = [{name:'test', val:1, color:'red'},
              {name:'other', val:2, color:'green'}, 
              {name:'b',     val:3, color:'blue'}];
 
-// Create two <p>s for modification.
+// Text + style the <div>s.
+// Join - Enter was used to create new <div>s.
 d3.select('.answerCenter')
     .selectAll('div')
     .data(data)
