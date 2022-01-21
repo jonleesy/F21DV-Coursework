@@ -1,7 +1,7 @@
-// js script for part 1.
+// js script for part 1 home page
 
 // Array of numbers [1, 2, ..., 33] defining number of exercises
-const data = Array.from(Array(33).keys())
+const data = Array.from(Array(33).keys());
 
 // Creating links to 32 Exercises Systematically.
 d3.select('body').selectAll('p')
@@ -11,4 +11,4 @@ d3.select('body').selectAll('p')
         .append('p').style('text-align', 'center') 
             .append('a')
                 .attr("href", d => 'part1exercise' + d +'.html')
-                .html(d => 'Exercise ' + d)
+                .html(d => 'Exercise ' + d);
