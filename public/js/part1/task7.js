@@ -5,7 +5,7 @@ const ex = 7;
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
-// Data for <p> population.
+// Data for <div> population.
 let data = [10, 50, 100, 200];
 
 // Create two <p>s for modification.

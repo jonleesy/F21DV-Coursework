@@ -5,7 +5,7 @@ const ex = 8;
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
-// Data for <p> population.
+// Data for <span> population.
 const data = ['a', 4, 1, 'b', 6, 2, 8, 9, 'z'];
 
 // Add a <div> to  center text.

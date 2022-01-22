@@ -5,7 +5,7 @@ const ex = 9;
 import {createDiv} from './functions.js';
 createDiv(ex);
 
-// Data for <p> population.
+// Data from csv.
 let dataCsv = 'https://raw.githubusercontent.com/dsindy/kaggle-titanic/master/data/test.csv';
 
 // Using a predefined variable for d3 in queston 9.
@@ -37,7 +37,7 @@ d3.csv(dataCsv).then(function(data) {
         }
         // Calculate the average fare for passenger.
         if (!Number.isNaN(parseFloat(d.Fare))) {
-            totalFare = totalFare + parseFloat(d.Fare);
+            totalFare += parseFloat(d.Fare);
         }
         console.log(totalFare)
     });
