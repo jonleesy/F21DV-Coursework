@@ -14,8 +14,8 @@ d3.select('.answerCenter')
     .data(data)
     .join(
         enter => enter.append('div')
-                .attr('id', 'task7')
-                .style('color', 'black')
+                    .attr('id', 'task7')
+                    .style('color', 'black')
     )
     .text((d, i) => i+1 + '. cont:' + d);
 

@@ -1,5 +1,5 @@
 name,width,height,x,y,cx,cy,r,rx,ry,stroke,text,fill
 rect,100,50,50,0,,,,,,,,pink
-circle,,,,,100,75,25,,green
+circle,,,,,100,75,25,,,,,green
 ellipse,,,,,100,125,,75,25,,,blue
 text,,,75,175,,,,,,black,sometext,red
