@@ -21,8 +21,18 @@ function mergeTask(first, second) {
                                         .attr('href', d => 'task' + first + 'n' + second + '.html');
 }
 
+// Remove task function
+function removeTask(task, message) {
+    d3.select(`.task${task} a`).remove();
+    d3.select(`.task${task}`).append('p')
+                            .text(message);
+}
+
 // Merge Exercises
 mergeTask(3, 4)
 mergeTask(12, 13)
 mergeTask(14, 15)
 mergeTask(18, 19)
+
+// Remove Exercises
+removeTask(22, "Exercise 22 was just to create a function for next two questions.")

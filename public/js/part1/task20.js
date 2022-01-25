@@ -48,4 +48,4 @@ svg.append('g')
 svg.append('g')
     .attr('transform', `translate(${width - margin}, ${margin})`)
     .call(d3.axisRight(verScale).ticks(6))
-    .style('color', 'blue')
+    .style('color', 'blue');
