@@ -44,7 +44,7 @@ svg.append('g')
     .call(d3.axisTop(horScale).ticks(6))
     .style('color', 'blue');
 
-// Bottom axis.
+// Right axis.
 svg.append('g')
     .attr('transform', `translate(${width - margin}, ${margin})`)
     .call(d3.axisRight(verScale).ticks(6))
