@@ -6,7 +6,7 @@ import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
 // Resizing container to fit more objects.
-d3.select('.container').style('height', '550px')
+d3.select('.container').style('height', '400px')
 
 const width = 200; const height = 500;
 const data = [10, 15, 20, 25, 30];
@@ -46,24 +46,25 @@ createButton(ex);
 
 // Button action: changed <div>s' text colour. 
 d3.select('.buttonori').on('click', function(){
+    // New colours for squares.
     const colors2 = ['rgb(214,180,133)','rgb(214,170,133)','rgb(214,160,133)','rgb(214,150,133)','rgb(214,140,133)'];
     
+    // New svgs with id: '#right'
     const g = svg.selectAll('g #right')
                     .data(data)
                     .enter()
                         .append('g')
-                        // .attr('transform', (d, i) => 'translate(0,0)')
                         .attr('id', 'right');
 
+    // Add the rectangle (suqare).
     g.append('rect')
         .attr('x', (_, i) => 140 - 5 * i)
         .attr('y', (_, i) => i * 60 + 40 - 5 * i)
-        // .attr('x', d => d * 2)
-        // .attr('y', d => d * 2)
         .attr('width', d => d * 2)
         .attr('height', d => d * 2)
         .attr('fill', (_, i) => colors2[i])
 
+    // Add text of width size.
     g.append('text')
         .attr('x', 143)
         .attr('y', (_, i) => i * 60 + 53)
