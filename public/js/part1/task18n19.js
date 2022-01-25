@@ -39,7 +39,8 @@ async function task18(data, csvid) {
         .attr('width', d => xScale(d.values))
         .attr('height', barHeight - margin)
         .attr('fill', d => (d.values < 100) ? 'green' : ((d.values > 500) ? 'red' : 'blue'))
-        
+    
+    // Add 'text' objects.
     g.append('text')
         .attr('x', d => xScale(d.values))
         .attr('y', barHeight/2)
