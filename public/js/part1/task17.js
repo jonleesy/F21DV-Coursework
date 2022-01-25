@@ -21,7 +21,6 @@ const svg = d3.select('.answerCenter')
 const xScale = d3.scaleLinear()
                     .domain([d3.min(data), d3.max(data)])
                     .range([30, 200]);
-console.log(d3.min(data))
 
 // Add 'g' object.
 const g = svg.selectAll('g')

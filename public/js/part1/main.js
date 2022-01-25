@@ -25,3 +25,4 @@ function mergeTask(first, second) {
 mergeTask(3, 4)
 mergeTask(12, 13)
 mergeTask(14, 15)
+mergeTask(18, 19)
