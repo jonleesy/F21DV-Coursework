@@ -1,5 +1,5 @@
 // js script for part 1 Exercise:
-const ex = 17;
+const ex = 28;
 
 // Create Div Systematically using a genral function.
 import {createDiv, createButton} from './functions.js';
@@ -28,12 +28,21 @@ const g = svg.selectAll('g')
             .enter()
                 .append('g')
                     .attr('transform', (_, i) => `translate(0, ${i * barHeight})`);
-                
+
+// Colour Scale
+const boxCol = d3.scaleSequential()
+                    .domain(d3.extent(data))
+                    .interpolator(d3.interpolatePuRd);
+// const textCol = d3.scaleLinear()
+//                     .domain(d3.extent(data))
+//                     .range(d3.schemeSet3);
+const textCol = d3.interpolateRgb('steelblue', 'white');
+
 // Add 'rect' elements.
 g.append('rect')
     .attr('width', d => xScale(d))
     .attr('height', barHeight - margin)
-    .attr('fill', 'blue');
+    .attr('fill', d => boxCol(d));
 
 // Add text object to rectangle.
 g.append('text')
@@ -41,25 +50,5 @@ g.append('text')
     .attr('y', barHeight/2)
     .attr('dy', '.25em')
     .style('text-anchor', 'end')
-    .text(d => d);
-
-// Add description for button (which does task 15).            
-d3.select('.answerCenter')
-    .append('p')
-        .style('text-align', 'center')
-        .append('em')
-            .text('Button would show green bars if below 100, and red if above 500')    
-
-// Button for task action.
-createButton(ex);
-
-// Button action: changed <div>s' text colour. 
-d3.select('.buttonori').on('click', function(){
-    if (d3.select('rect').attr('fill') === 'blue') {
-        d3.selectAll('rect')
-            .attr('fill', d => (d < 100) ? 'green' : ((d > 500) ? 'red' : 'blue'))
-    } else {
-        d3.selectAll('rect')
-            .attr('fill', 'blue')
-    }
-});
+    .text(d => d)
+    .style('fill', d => textCol(d/1000));
