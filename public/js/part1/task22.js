@@ -80,6 +80,7 @@ export function addLines(data, svg, color) {
             .datum(data)
             .attr('fill', 'none')
             .attr('stroke', color)
+            .attr('stroke-width', 2)
             .attr('d', d3.line()
                     .x(d => svg.horScale(d.x) )
                     .y(d => svg.verScale(d.y))
