@@ -34,6 +34,7 @@ mergeTask(12, 13)
 mergeTask(14, 15)
 mergeTask(18, 19)
 mergeTask(25, 27, cond1 = ' to ', cond2 = 'to')
+mergeTask(30, 31)
 
 // Remove Exercises
 removeTask(22, "Exercise 22 was just to create a function for next two questions.")
