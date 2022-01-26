@@ -85,3 +85,53 @@ export function addLines(data, svg, color) {
                     .y(d => svg.verScale(d.y))
                     )
 }
+
+
+/**
+ * Function adds lines with datapoints on the plot. 
+ * @param {*} data x, y coordinates data
+ * @param {*} svg svg element
+ * @param {*} color coloour of line and dots
+ * @param {*} shape shape of points
+ */
+export function addLinesShape(data, svg, color, shape) {
+    // Add lines first. This function works independently from addLines()
+    addLines(data, svg, color);
+
+    // Pre-defining the datapoint symbol
+    let symbol;
+    switch (shape) {
+        case 'triangle': symbol = d3.symbol().type(d3.symbolTriangle).size(10); break;
+        case 'circle': symbol = d3.symbol().type(d3.symbolCircle).size(10); break;
+    }
+    
+    // Add data points.
+    const dots = svg.svg.selectAll('.dots')
+                        .data(data)
+                        .enter()
+                            .append('path')
+
+    dots.attr('d', symbol)
+        .attr('fill', color)
+        .attr('stroke', 'black')
+        .attr('id', `${shape}`)
+        .attr('stroke-width', 1)
+        .attr('transform', function(d) {
+            return `translate(${svg.horScale(d.x)}, ${svg.verScale(d.y)})`
+        })
+}
+
+export function addLinesCoor(data, svg) {
+    const margin = 7;
+    svg.svg
+        .append('g')
+        .selectAll('text')
+        .data(data)
+        .enter()
+            .append('text')
+                .style('font-size', '12px')
+                .attr('transform', d => `translate(${svg.horScale(d.x) + margin}, 
+                                            ${svg.verScale(d.y) + margin})`)
+                .text((d, i) => (i == 3) ? `(${d.x}, ${d.y})` : '')
+
+}
