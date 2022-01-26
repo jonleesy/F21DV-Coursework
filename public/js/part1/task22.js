@@ -86,23 +86,22 @@ export function addLines(data, svg, color) {
                     )
 }
 
-
 /**
  * Function adds lines with datapoints on the plot. 
- * @param {*} data x, y coordinates data
- * @param {*} svg svg element
- * @param {*} color coloour of line and dots
- * @param {*} shape shape of points
+ * @param {*} data x, y coordinates data.
+ * @param {*} svg svg element.
+ * @param {*} color coloour of line and dots.
+ * @param {*} shape shape of points.
  */
 export function addLinesShape(data, svg, color, shape) {
-    // Add lines first. This function works independently from addLines()
+    // Add lines first. This function works independently from addLines().
     addLines(data, svg, color);
 
-    // Pre-defining the datapoint symbol
+    // Pre-defining the datapoint symbol.
     let symbol;
     switch (shape) {
-        case 'triangle': symbol = d3.symbol().type(d3.symbolTriangle).size(10); break;
-        case 'circle': symbol = d3.symbol().type(d3.symbolCircle).size(10); break;
+        case 'triangle': symbol = d3.symbol().type(d3.symbolTriangle).size(20); break;
+        case 'circle': symbol = d3.symbol().type(d3.symbolCircle).size(20); break;
     }
     
     // Add data points.
@@ -115,13 +114,19 @@ export function addLinesShape(data, svg, color, shape) {
         .attr('fill', color)
         .attr('stroke', 'black')
         .attr('id', `${shape}`)
-        .attr('stroke-width', 1)
+        .attr('stroke-width', 0.5)
         .attr('transform', function(d) {
             return `translate(${svg.horScale(d.x)}, ${svg.verScale(d.y)})`
         })
 }
 
-export function addLinesCoor(data, svg) {
+/**
+ * Function adds coordinates of desired datapoints on the plot. 
+ * @param {*} data x, y coordinates data.
+ * @param {*} svg svg element.
+ * @param {*} pointNumber which point would you like to plot.
+ */
+export function addLinesCoor(data, svg, pointNumber) {
     const margin = 7;
     svg.svg
         .append('g')
@@ -132,6 +137,45 @@ export function addLinesCoor(data, svg) {
                 .style('font-size', '12px')
                 .attr('transform', d => `translate(${svg.horScale(d.x) + margin}, 
                                             ${svg.verScale(d.y) + margin})`)
-                .text((d, i) => (i == 3) ? `(${d.x}, ${d.y})` : '')
+                .text((d, i) => (i == pointNumber) ? `(${d.x}, ${d.y})` : '')
+}
 
+/**
+ * Function adds lines with datapoints on the plot. 
+ * @param {*} data x, y coordinates data.
+ * @param {*} svg svg element.
+ * @param {*} color coloour of line and dots.
+ * @param {*} shape shape of points.
+ */
+ export function addLinesShapeDifferentColor(data, svg, interpolateMethod, shape) {
+    // Color Scale.
+    const colScale = d3.scaleSequential()
+                    .domain(d3.extent(data, d => d.y))
+                    .interpolator(interpolateMethod);
+
+    // Add lines first. Different colour for different line.
+    addLines(data, svg, d => (shape === 'circle' ? 'blue' : 'red'));
+
+    // Pre-defining the datapoint symbol.
+    let symbol;
+    switch (shape) {
+        case 'triangle': symbol = d3.symbol().type(d3.symbolTriangle).size(30); break;
+        case 'circle': symbol = d3.symbol().type(d3.symbolCircle).size(30); break;
+    }
+    
+    // Add data points.
+    const dots = svg.svg.selectAll('.dots')
+                        .data(data)
+                        .enter()
+                            .append('path')
+
+    dots.attr('d', symbol)
+        // Using the color scale to set the fill colour of points.
+        .attr('fill', d => colScale(d.y))
+        .attr('stroke', 'black')
+        .attr('id', `${shape}`)
+        .attr('stroke-width', 0.5)
+        .attr('transform', function(d) {
+            return `translate(${svg.horScale(d.x)}, ${svg.verScale(d.y)})`
+        })
 }

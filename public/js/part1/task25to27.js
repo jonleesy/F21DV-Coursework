@@ -34,8 +34,8 @@ const buttonActive = true;
 d3.select('.buttonori').on('click', function(){
     while (buttonActive) {
         // Add Coor Text
-        addLinesCoor(data, svg);
-        addLinesCoor(data2, svg);
+        addLinesCoor(data, svg, 3);
+        addLinesCoor(data2, svg, 2);
         buttonActive = false;
     }
 });
