@@ -40,7 +40,7 @@ d3.select('.buttonori').on('click', function(){
             .style('background-color', function(d, i) {
                 if (i == 0) {
                     return 'purple';
-                } else if (i < 5) {
+                } else if (i < 6) {
                     return 'green';
                 } else {
                     return 'red';
