@@ -1,14 +1,14 @@
 // js script for part 1 Exercise:
 const ex = 10;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv} from './functions.js';
 createDiv(ex);
 
 // Data from csv
 let dataCsv = d3.csv('https://raw.githubusercontent.com/akmand/datasets/master/heart_failure.csv');
 
-// Exporting the function that gets the numbers for task 14 & 15
+// Function that gets the numbers for this task and task 14 & 15
 async function getData() {
     const data = await dataCsv;
     let young = 0;
@@ -26,7 +26,7 @@ async function getData() {
             veryold ++;
         }
     }
-    // adding a '0' since d3 will skip "young = 0".
+    // Adding a '0' since d3 will skip "young = 0".
     return ['0', young, mid, old, veryold]
 }
 
@@ -47,6 +47,7 @@ d3.select('.answerCenter').selectAll('p')
             return msg;
         });
 
+// Function for task 14 & 15.
 export async function exportData() {
     const expData = await getData();
     return [{name: "1-31", value: expData[1]},

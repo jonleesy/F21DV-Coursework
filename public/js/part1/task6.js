@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 6;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv} from './functions.js';
 createDiv(ex);
 
@@ -16,5 +16,5 @@ d3.select('.answerCenter')
     .selectAll('div')
     .data(data)
     .join(enter => enter.append('div'))
-    .text((d, i) => i+1 + '. cont: ' + d.name + '; color: ' + d.color)
+    .text((d, i) => `${i + 1} cont: ${d.name}; color: ${d.color}`)
     .style('color', (d, _) => d.color);

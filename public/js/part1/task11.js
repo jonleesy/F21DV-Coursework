@@ -1,16 +1,16 @@
 // js script for part 1 Exercise:
 const ex = 11;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
 // Data for <div> population.
 // Data Points for square lines.
-let data11 = [{x:[0,200],   y:[0,0],     'color':'red'},
-              {x:[200,200], y:[0,200],   'color':'blue'},
-              {x:[200,0],   y:[200,200], 'color':'purple'},
-              {x:[0,0],     y:[200,0],   'color':'green'}];
+let data11 = [{x:[10,190],   y:[10,10],     'color':'red'},
+              {x:[190,190], y:[10,190],   'color':'blue'},
+              {x:[190,10],   y:[190,190], 'color':'purple'},
+              {x:[10,10],     y:[190,10],   'color':'green'}];
 
 // Generalised d3 svg div selection.
 let svg11 = d3.select('.answerCenter');
@@ -33,7 +33,7 @@ d3.select('.buttonori').on('click', function(){
             .attr('x2', data11[key]['x'][1])
             .attr('y1', data11[key]['y'][0])
             .attr('y2', data11[key]['y'][1])
-            .attr('stroke-width', 12)
+            .attr('stroke-width', 6)
             .attr('stroke', data11[key]['color'])
     }
 });

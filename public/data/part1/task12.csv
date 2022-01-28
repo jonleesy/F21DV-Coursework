@@ -1,5 +1,6 @@
-name,width,height,x,y,cx,cy,r,rx,ry,stroke,text,fill
-rect,100,50,50,0,,,,,,,,pink
-circle,,,,,100,75,25,,,,,green
-ellipse,,,,,100,125,,75,25,,,blue
-text,,,75,175,,,,,,black,sometext,red
+name,width,height,x1,y1,x2,y2,x,y,cx,cy,r,rx,ry,stroke,stroke-width,text,fill
+rect,100,50,,,,,50,0,,,,,,,,,pink
+circle,,,,,,,,,100,75,25,,,,,,green
+ellipse,,,,,,,,,100,125,,75,25,,,,blue
+text,,,,,,,75,175,,,,,,black,,sometext,red
+line,,,10,10,190,190,,,,,,,,purple,6,,

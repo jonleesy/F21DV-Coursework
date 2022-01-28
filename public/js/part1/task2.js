@@ -1,11 +1,11 @@
 // js script for part 1 Exercise:
 const ex = 2;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
-// Data for <p> population.
+// Data for <p>s population.
 const data = ['First', 'Second'];
 
 // Create two <p>s for modification.

@@ -17,4 +17,5 @@ svg.svg
     .attr('width', 320)
     .attr('height', 320)
 
+// Add line on top of pic.
 addLinesShape(data, svg, 'steelblue', 'circle');

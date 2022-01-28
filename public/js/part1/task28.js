@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 28;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a general function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
@@ -29,13 +29,10 @@ const g = svg.selectAll('g')
                 .append('g')
                     .attr('transform', (_, i) => `translate(0, ${i * barHeight})`);
 
-// Colour Scale
+// Colour Scale.
 const boxCol = d3.scaleSequential()
                     .domain(d3.extent(data))
                     .interpolator(d3.interpolatePuRd);
-// const textCol = d3.scaleLinear()
-//                     .domain(d3.extent(data))
-//                     .range(d3.schemeSet3);
 const textCol = d3.interpolateRgb('steelblue', 'white');
 
 // Add 'rect' elements.

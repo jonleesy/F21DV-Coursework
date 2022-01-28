@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 17;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a general function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 

@@ -1,8 +1,8 @@
 // js script for part 1 Exercise:
 const ex = 21;
 
-// Create Div Systematically using a genral function.
-import {createDiv, createButton} from './functions.js';
+// Create Divs and button systematically using a general function.
+import {createDiv} from './functions.js';
 createDiv(ex);
 
 // Data for bar chart.

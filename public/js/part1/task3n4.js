@@ -1,11 +1,11 @@
 // js script for part 1 Exercise:
 const ex = '3 \& 4';
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
-// Array of numbers [0, 1, 2, ..., 10] defining number of exercises
+// Array of numbers [0, 1, 2, ..., 10], defining number of exercises.
 const data = Array.from({length: 10}, (_, i) => i + 1);
 
 // Create 10 <div>s for modification.
@@ -23,12 +23,11 @@ d3.select('.answerCenter')
 // Restyle container to include more than 200 px
 d3.select('.container')
     .style('height', '250px');
-    
 
 // Button for task action.
 createButton(ex);
 
-// Button action: changed <div>s' text colour, 
+// Button action: changes <div>s' text colour, 
 // and rename first <div> to 'start'. If <div>s 
 // have been renamed, buton would revert it to 
 // its original state

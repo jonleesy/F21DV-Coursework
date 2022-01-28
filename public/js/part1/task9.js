@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 9;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv} from './functions.js';
 createDiv(ex);
 
@@ -16,7 +16,7 @@ d3.csv(dataCsv).then(function(data) {
     let male = 0, female = 0;
     let totalFare = 0;
 
-    // Iterate thrugh every entry of data.
+    // Iterate thrugh every entry of data, asynchroneous method.
     data.forEach(function(d) {
         // Using local variables to store names and sex for if statements.
         let n = d.Name;

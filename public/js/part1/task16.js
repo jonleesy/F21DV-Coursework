@@ -1,13 +1,14 @@
 // js script for part 1 Exercise:
 const ex = 16;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a general function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
 // Resizing container to fit more objects.
 d3.select('.container').style('height', '400px')
 
+// SVG Constants and data.
 const width = 200; const height = 500;
 const data = [10, 15, 20, 25, 30];
 
@@ -27,12 +28,14 @@ const g = svg.selectAll('g #left')
                     // .attr('transform', (d, i) => 'translate(0,0)')
                     .attr('id', 'left');
 
+// Add the circles.                    
 g.append('circle')
     .attr('cx', 50)
     .attr('cy', (_, i) => i * 60 + 50)
     .attr('r', d => d)
     .attr('fill', (_, i) => colors[i]);
 
+// Add the circle's text.
 g.append('text')
     .attr('x', 43)
     .attr('y', (_, i) => i * 60 + 53)

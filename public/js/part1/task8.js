@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 8;
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a genral function.
 import {createDiv, createButton} from './functions.js';
 createDiv(ex);
 
@@ -14,22 +14,21 @@ d3.select('.answerCenter').append('div')
     .style('text-align', 'center');
 
 // Create two <p>s for modification.
-d3.select('.centerdiv')
-    .selectAll('span')
-    .data(data)
-    .join(
-        enter => enter.append('span')
-                .attr('id', 'task8')
-                .style('color', 'black')
-                .text((d) => d)
-    );
+const selected = d3.select('.centerdiv')
+                    .selectAll('span')
+                    .data(data)
+                    .join(
+                        enter => enter.append('span')
+                                .style('color', 'black')
+                                .text((d) => d)
+                    );
 
 // Button for task action.
 createButton(ex);
 
 // Button action: changed <p>s' text colour. 
 d3.select('.buttonori').on('click', function(){
-    d3.selectAll('#task8')
+    selected
         .style('color', function(d) {
             // Conditional check to revert <div>s to original color.
             if (d3.select(this).style('color') === 'black') {

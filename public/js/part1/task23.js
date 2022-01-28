@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = 23;
 
-// Import svg and line function from task22.js
+// Create Divs and button systematically using a general function.
 import { createSvg, addLines } from './task22.js';
 
 // Import data for task 23.

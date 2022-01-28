@@ -1,7 +1,7 @@
 // js script for part 1 Exercise:
 const ex = '30 \& 31';
 
-// Create Div Systematically using a genral function.
+// Create Divs and button systematically using a general function.
 import {createDiv} from './functions.js';
 createDiv(ex);
 
@@ -50,7 +50,8 @@ arcs.append('path')
     .attr('stroke', 'black')
     .attr('stroke-width', 0.1)
     .attr('d', arc)
-    
+
+// Add arc's text.
 arcs.append('text')
     .text(d => d.data)
     .attr('transform', d => `translate(${arc.centroid(d)})`)
