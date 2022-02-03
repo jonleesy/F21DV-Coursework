@@ -110,7 +110,9 @@ captionpos=b
 \chapter{Introduction}
 The entirety of the F21DV four-part coursework is done in a way where it resembels
 a full static or a \verb|node.js| server-side web application. The goal of this
-series of coursework is to demonstrate the understanding of \verb|d3.js|.
+series of coursework is to demonstrate the understanding of \verb|d3.js|.\\
+\par Github Repo: \href{https://github.com/jonleesy/F21DV-Coursework}{https://github.com/jonleesy/F21DV-Coursework}\\
+Github Pages: \href{https://jonleesy.github.io/F21DV-Coursework/public}{https://jonleesy.github.io/F21DV-Coursework/public}
 
 \section{General Setup}
 \begin{figure}[!ht]
@@ -207,5 +209,90 @@ Within each exercise's own HTML \verb|body|, they all inherit a generic CSS sett
 exercise. There is also a generic button cssd style called \verb|.buttonOri| and \verb|.button| that
 handles the CSS transition of all the buttons. \\
 \par For each exercise, I have also used a generalised function in \verb|functions.js| to create the
-\verb|<div>|s and buttons so that the styles remain consistent across all exercises. 
+\verb|<div>|s and buttons so that the styles remain consistent across all exercises.\\
+\begin{lstlisting}[language=JavaScript,
+    caption={Systematic div and button creation},
+    captionpos=b,
+    label={lst:functionsjs}]
+    /**
+    * Create div's for each question systematically.
+    * @param {*} exerciseNumber Task number.
+    */
+   export function createDiv(exerciseNumber) {
+       d3.select('body')
+           .append('div')
+               .attr('class', 'container')
+               .append('div')
+                   .attr('class', 'answerCenter')
+                   .append('p')
+                       .append('strong')
+                           .text('Exercise ' + exerciseNumber + ':')
+   }
+   
+   /**
+    * Creates a button to execute action for each task.
+    * @param {*} exerciseNumber 
+    */
+   export function createButton(exerciseNumber) {
+       d3.select('body')
+           .append('div').attr('class', 'container')
+               .append('div').attr('class', 'center')
+                   .append('button')
+                       .attr('class', 'buttonori')
+                       .text('Click for Task ' + exerciseNumber)
+   }
+\end{lstlisting}
+Listing \ref{lst:functionsjs} shows the systematic approach used to create the answer container, 
+as well as buttons to execute exercises actions. However, not all exercise would use the button,
+since not all exercise is in need of an action.
+
+\newpage
+\chapter{Exercises}
+\section{Exercise 1}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex1_1.png}
+    \includegraphics[width = 7.5cm]{images/ex1_2.png}
+    \label{fig:ex1}
+    \caption{Exercise 1}
+\end{figure}
+\FloatBarrier
+Figure \ref{fig:ex1} shows the outcome after clicking on the action button. The answer container
+space would print the d3 version number upon clicking the task button.
+\lstinputlisting[language=JavaScript]{../../public/js/part1/task1.js}
+Upon clicking the button, using d3, the button action replaces the empty \verb|<p>| with "d3
+version: 7.3.0". For the remaining exercises, the button action would do a similar thing as well.
+It would select the desired object for modification, and through a button on-click event listener,
+modify the selected object.
+
+\newpage
+\section{Exercise 2}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 8cm]{images/ex2_1.png}
+    \includegraphics[width = 8cm]{images/ex2_2.png}
+    \label{fig:ex2}
+    \caption{Exercise 2}
+\end{figure}
+\FloatBarrier
+Figure \ref{fig:ex2} shows that upon clicking the button, d3 would change the colours of the selected
+\verb|<p>|s to red. 
+
+\newpage
+\section{Exercise 3 \& 4}
+Exercises 3 \& 4 are one of the exercises where I have combined into one.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 8cm]{images/ex3_1.png}
+    \includegraphics[width = 8cm]{images/ex3_2.png}
+    \label{fig:ex3}
+    \caption{Exercise 3}
+\end{figure}
+\FloatBarrier
+Exercise 3 was to populate 10 div elements with numbers from 1 to 10, and to colour them according to
+their values. Task four asks then, to replace the first value, "1", with the text "start". However, I
+went ahead and implemented the change for the remaining divs as well, changing their values so that
+the divs would show start, 1, 2, ..., 9, whilst keeping the colour requirements. Upon clicking the
+button, the state of the div's would return to the original state again. Button is clickable multiple times.
+
 \end{document}
