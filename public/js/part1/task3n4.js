@@ -2,7 +2,7 @@
 const ex = '3 \& 4';
 
 // Create Divs and button systematically using a genral function.
-import {createDiv, createButton} from './functions.js';
+import {createDiv, createButton} from '../functions.js';
 createDiv(ex);
 
 // Array of numbers [0, 1, 2, ..., 10], defining number of exercises.

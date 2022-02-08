@@ -2,7 +2,7 @@
 const ex = 10;
 
 // Create Divs and button systematically using a genral function.
-import {createDiv} from './functions.js';
+import {createDiv} from '../functions.js';
 createDiv(ex);
 
 // Data from csv

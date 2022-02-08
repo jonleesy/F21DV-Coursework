@@ -2,7 +2,7 @@
 const ex = '30 \& 31';
 
 // Create Divs and button systematically using a general function.
-import {createDiv} from './functions.js';
+import {createDiv} from '../functions.js';
 createDiv(ex);
 
 // Create and array of numebers. Remove '0'.

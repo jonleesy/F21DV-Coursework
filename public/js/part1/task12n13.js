@@ -2,7 +2,7 @@
 const ex = '12 \& 13';
 
 // Create Divs and button systematically using a genral function.
-import {createDiv, createButton} from './functions.js';
+import {createDiv, createButton} from '../functions.js';
 createDiv(ex);
 
 // Read Csv, as part of exercise 12.

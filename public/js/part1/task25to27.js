@@ -2,7 +2,7 @@
 const ex = '25, 26 \& 27';
 
 // Import create button function.
-import { createButton } from './functions.js';
+import { createButton } from '../functions.js';
 
 // Import svg and line function from task22.js.
 import { createSvg, addLinesShape, addLinesCoor } from './task22.js';
@@ -28,7 +28,7 @@ d3.select('.container').style('height', '430px');
 createButton(27);
 
 // Button active. Button no longer does stuff once its clicked.
-const buttonActive = true;
+let buttonActive = true;
 
 // Button action: adds task 27.
 d3.select('.buttonori').on('click', function(){

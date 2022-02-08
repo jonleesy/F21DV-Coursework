@@ -2,7 +2,7 @@
 const ex = 5;
 
 // Create Divs and button systematically using a genral function.
-import {createDiv} from './functions.js';
+import {createDiv} from '../functions.js';
 createDiv(ex);
 
 // Create <div> for chaining modification.

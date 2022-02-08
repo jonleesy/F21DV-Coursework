@@ -48,10 +48,30 @@ button {
     left: 50%;
     transform: translate(-50%, 0%);
 }
-/* .answercenter {
-    position: absolute;
-    width: 200px;
-    top: 10;
-    left: 50%;
-    transform: translate(-50%, 0%);
-} */
+
+/* Part 2 onwards CSS using grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 100px 100px 100px 100px auto;
+    grid-template-rows: 60px auto auto auto auto auto;
+    grid-gap: 10px;
+    /* background-color: #262c3046; */
+    padding: 10px;
+}
+
+.grid-container > div {
+    background-color: rgb(226, 238, 240);
+    padding: 20px 0;
+}
+
+.title-grid {
+    grid-area: 1 / 2 / 1 / 6;
+    text-align: left;
+    text-indent: 20%;
+}
+
+.answer-grid {
+    grid-area: 2 / 2 / 6 / 6;
+    text-align: center;
+    align-content: center;
+}

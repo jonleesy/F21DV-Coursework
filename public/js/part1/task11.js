@@ -2,7 +2,7 @@
 const ex = 11;
 
 // Create Divs and button systematically using a genral function.
-import {createDiv, createButton} from './functions.js';
+import {createDiv, createButton} from '../functions.js';
 createDiv(ex);
 
 // Data for <div> population.

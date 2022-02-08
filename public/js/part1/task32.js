@@ -2,7 +2,7 @@
 const ex = 32;
 
 // Import svg and line function from task22.js
-import { createSvg, addLines, addLinesShape } from './task22.js';
+import { createSvg, addLinesShape } from './task22.js';
 
 // Import data for task 23.
 const data = await d3.csv('../../data/part1/task23.csv');

@@ -2,7 +2,7 @@
 const ex = 20;
 
 // Create Divs and button systematically using a general function.
-import {createDiv} from './functions.js';
+import {createDiv} from '../functions.js';
 createDiv(ex);
 
 // Data for bar chart.

@@ -2,7 +2,7 @@
 const ex = 22;
 
 // Create Divs and button systematically using a general function.
-import {createDiv} from './functions.js';;
+import {createDiv} from '../functions.js';
 
 /**
  * Creates and appends the SVG and its axes.

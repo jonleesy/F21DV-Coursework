@@ -1,0 +1,34 @@
+.pulse {
+    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+}
+
+.pulse:hover {
+    -webkit-animation: pulsar 0.6s ease infinite;
+    animation: pulsar 0.6s ease infinite;
+}
+
+/* Manually Tweaking the margin by margin = 40 */
+@keyframes pulsar {
+    0% {
+        fill: red;
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform-origin: center + 40 center + 40;
+        -webkit-transform-origin: center + 40 center + 40;
+    }
+    70% {
+        fill: rgb(0, 255, 0);
+        transform: scale(1.2, 1.2);
+        -webkit-transform: scale(1.5, 1.5);
+        transform-origin: center + 40 center + 40;
+        -webkit-transform-origin: center + 40 center + 40;
+    }
+    100% {
+        fill: red;
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform-origin: center + 40 center + 40;
+        -webkit-transform-origin: center + 40 center + 40;
+    }
+}

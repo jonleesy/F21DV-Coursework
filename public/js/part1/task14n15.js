@@ -4,7 +4,7 @@
 const ex = '14 \& 15';
 
 // Create Divs and button systematically using a general function.
-import {createDiv, createButton} from './functions.js';
+import {createDiv, createButton} from '../functions.js';
 createDiv(ex);
 
 // Data from task10.js.
