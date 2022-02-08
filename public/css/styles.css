@@ -1,16 +1,20 @@
+/* General CSS */
 html {
     zoom: 130%;
 }
+
 body {
     background-color: rgb(226, 238, 240);
     align-self: center;
 }
+
 header {
     text-align: center;
     margin-top: 10%;
     font-size: x-large;
     letter-spacing: 1px;
 }
+
 button {
     display: block;
     margin-top: 15%;
@@ -21,26 +25,31 @@ button {
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
 }
+
 .buttonori {
     background-color: white;
     color: black;
     border: 2px solid #555555;
 }
+
 .buttonori:hover {
     background-color: #555555;
     color: white;
 }
+
 .container { 
     height: 250px;
     position: relative;
     display: flex;
 }
+
 .center {
     position: absolute;
     top: 10;
     left: 50%;
     transform: translate(-50%, 0%);
 }
+
 .answerCenter {
     position: absolute;
     width: 200px;

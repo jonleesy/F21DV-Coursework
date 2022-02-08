@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 1
+const ex = 1;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -9,10 +9,10 @@ import { createSvg } from './sharedFunction.js';
 const data = await d3.csv('../../data/part1/task23.csv');
 
 // Creating <div>s systematically
-createAnswerDiv(ex)
+createAnswerDiv(ex);
 
 // Create the Svg
-const svg = createSvg(data)
+const svg = createSvg(data);
 
 // Add Lines.
 svg.svg.append('path')
@@ -22,7 +22,7 @@ svg.svg.append('path')
     .attr('stroke-width', 2)
     .attr('d', d3.line()
             .x(d => svg.horScale(d.x))
-            .y(d => svg.verScale(d.y)))
+            .y(d => svg.verScale(d.y)));
 
 // Add Circles
 svg.svg.selectAll('circle')
@@ -37,4 +37,4 @@ svg.svg.selectAll('circle')
                 .attr('r', 5)
                 .attr('class', 'pulse')
                 .attr('stroke', 'black')
-                .attr('fill', 'red')
+                .attr('fill', 'red');

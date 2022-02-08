@@ -1,0 +1,17 @@
+.inner-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 50px;
+    grid-gap: 10px;
+    background-color: #262c3046;
+    padding: 10px;
+}
+
+.outer-show .hidden {
+    visibility: hidden;
+    background-color: aliceblue;
+}
+
+.outer-show:hover .hidden{
+    visibility: visible;
+}
