@@ -84,3 +84,9 @@ button {
     text-align: center;
     align-content: center;
 }
+
+.answer-grid-small {
+    grid-area: 2 / 3 / 6 / 5;
+    text-align: center;
+    align-content: center;
+}

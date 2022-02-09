@@ -8,7 +8,7 @@ import { createSvg } from './sharedFunction.js';
 // Reuse datapoints from Lab 1
 const data = await d3.csv('../../data/part1/task23.csv');
 
-// Creating <div>s systematically
+// Creating base <div>s systematically
 createAnswerDiv(ex);
 
 // Create the Svg
