@@ -34,7 +34,7 @@ d3.select('.svg-element')
         .attr('x', 100)
         .attr('y', 100)
         .attr('opacity', 0)
-        .style('font-size', '15px')
+        .style('font-size', '15px');
 
 // 'Unempty' the text.
 d3.selectAll('.svg-element')
