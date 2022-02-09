@@ -5,4 +5,4 @@ import { createExercisesUrl, mergeTask, removeTask } from '../functions.js';
 const data = Array.from(Array(33).keys());
 
 // Create 32 exercises
-createExercisesUrl(data)
+createExercisesUrl(data);

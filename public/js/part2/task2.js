@@ -7,11 +7,11 @@ import { createAnswerDiv } from '../functions.js';
 // Creating <div>s systematically
 createAnswerDiv(ex);
 
-let data = ['rgb(204, 051, 051)', 'rgb(204, 204, 051)', 'rgb(051, 204, 051)', 'rgb(051, 051, 204)']
+let data = ['rgb(204, 051, 051)', 'rgb(204, 204, 051)', 'rgb(051, 204, 051)', 'rgb(051, 051, 204)'];
 
 d3.select('.answer-grid')
     .append('div')
-        .attr('class', 'inner-grid')
+        .attr('class', 'inner-grid');
 
 d3.select('.inner-grid')
     .selectAll('div')
@@ -22,8 +22,8 @@ d3.select('.inner-grid')
         .style('font-size', '10px')
         .append('p')
             .attr('class', 'hidden')
-            .text(d => d)
+            .text(d => d);
 
 d3.select('.answer-grid')
     .append('p')
-        .text('Hover on squares for colour.')
+        .text('Hover on squares for colour.');

@@ -8,7 +8,7 @@ import { createAnswerDiv } from '../functions.js';
 createAnswerDiv(ex);
 
 // Svg constants.
-let svgLength = 400.
+let svgLength = 400;
 
 const svg = d3.select('.answer-grid')
                 .append('svg')

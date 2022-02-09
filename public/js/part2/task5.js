@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 5
+const ex = 5;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';

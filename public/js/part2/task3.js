@@ -28,4 +28,4 @@ d3.select('.answer-grid-small')
             .style('background-color', 'green')
             .style('border-style', 'solid')
             .text('');
-    })
+    });

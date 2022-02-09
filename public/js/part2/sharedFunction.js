@@ -42,4 +42,4 @@ export function createSvg(data) {
         .call(d3.axisLeft(verScale));
 
     return {svg, horScale, verScale};
-}
+};
