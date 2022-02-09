@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 12;
+const ex = 13;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -28,12 +28,18 @@ const bars = svg.selectAll('rect')
                     .attr('width', svgLength/3 - margin * 2);
 
 update();
+// update2();
 
 function update() {
     // Forward Transition
     bars.transition()
-        .ease(d3.easeExp)
-        .duration(2000)
-        .delay((_, i) => i * 1900)
-        .attr('height', (_, i) => (svgLength/3)*(i + 1) - margin*2)
-};
+            .ease(d3.easeExp)
+            .duration(2000)
+            .delay((_, i) => i * 2000)
+            .attr('height', (_, i) => (svgLength/3)*(i + 1) - margin*2)
+        .transition()
+            .ease(d3.easeExp)
+            .duration(2000)
+            .delay(4000)
+            .attr('height', 0);
+}
