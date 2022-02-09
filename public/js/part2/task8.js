@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 7;
+const ex = 8;
 
 // Imports of functions.
 import { createAnswerDivSmall } from '../functions.js';
@@ -15,7 +15,7 @@ d3.select('.answer-grid-small')
         .text('1');
 
 d3.select('.answer-grid-small div')
-    .on('click', function() {
+    .on('mouseenter', function() {
         d3.select(this)
             .transition()
                 .duration(1000)
@@ -27,6 +27,9 @@ d3.select('.answer-grid-small div')
                 .style('background-color', 'green')
                 .style('width', '120px')
                 .text('3')
+    })
+    .on('mouseleave', function() {
+        d3.select(this)
             .transition()
                 .duration(1000)
                 .style('background-color', 'blue')
@@ -36,4 +39,4 @@ d3.select('.answer-grid-small div')
 
 d3.select('.answer-grid-small')
     .append('p')
-    .text('Click on colour box to change colour and box size.')
+    .text('Hover on colour box to change colour and box size.')
