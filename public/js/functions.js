@@ -37,6 +37,27 @@ export function createAnswerDiv(exerciseNumber) {
 }
 
 /**
+ * Similar to createDiv(). Was told to look into 
+ * grid instead of using hard coded div settings.
+ * This one focuses on that, and will be used starting 
+ * from lab2.
+ * @param {*} exerciseNumber 
+ */
+export function createAnswerDivSmall(exerciseNumber) {
+    d3.select('body')
+        .append('div')
+            .attr('class', 'grid-container')
+            .append('div')
+                .attr('class', 'title-grid')
+                .append('p')
+                        .append('strong')
+                            .text('Exercise ' + exerciseNumber + ':')
+    d3.select('.grid-container')
+        .append('div')
+        .attr('class', 'answer-grid-small')
+}
+
+/**
  * Creates a button to execute action for each task.
  * @param {*} exerciseNumber 
  */
