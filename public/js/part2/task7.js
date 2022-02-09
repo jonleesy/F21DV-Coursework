@@ -4,7 +4,7 @@ const ex = 7;
 // Imports of functions.
 import { createAnswerDivSmall } from '../functions.js';
 
-// Creating base <div>s systematically
+// Creating base <div>s systematically.
 createAnswerDivSmall(ex);
 
 d3.select('.answer-grid-small')
