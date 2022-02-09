@@ -47,4 +47,9 @@ d3.selectAll('.svg-element')
             .attr('opacity', 1)
             .text(`x: ${x.substr(0, x.indexOf('.'))},
                    y: ${y.substr(0, y.indexOf('.'))}`)
+    })
+    .on('mouseleave', function() {
+        d3.select('.moving-text')
+            .attr('opacity', 0)
+            .text('')
     });
