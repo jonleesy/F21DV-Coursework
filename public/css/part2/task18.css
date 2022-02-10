@@ -1,0 +1,16 @@
+.inner-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 50px;
+    grid-gap: 10px;
+    background-color: #262c3046;
+    padding: 10px;
+}
+
+.inner-grid > div {
+    background-color: #1a486446;
+}
+
+.inner-grid > div:hover {
+    background-color: #3a98d346;
+}
