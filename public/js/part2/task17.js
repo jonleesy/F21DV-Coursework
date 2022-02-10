@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 15;
+const ex = 16;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -45,7 +45,10 @@ const g = svg.append('g')
 // Processing the Csv.
 data15.then(function(data) {
     // Local Variables
-    let scaleMargin = 10;
+    let scaleMargin = 10,
+        minVal = d3.min(data, d => d.value),
+        maxVal = d3.max(data, d => d.value),
+        minCol = 'red', maxCol = 'blue';
     
     // Defining the hor/ver axis domain.
     horScale.domain(data.map(d => d.year));
@@ -84,6 +87,7 @@ data15.then(function(data) {
             .attr('x', d => horScale(d.year))
             .attr('y', d => verScale(d.value))
             .attr('width', horScale.bandwidth())
+            .style('fill', d => (d.value === minVal) ? minCol : ((d.value === maxVal) ? maxCol : 'green'))
             .transition()
                 .duration(400)
                 .ease(d3.easeLinear)
@@ -98,12 +102,13 @@ data15.then(function(data) {
                 .attr('width', horScale.bandwidth() + scaleMargin/2)
                 .attr('y', verScale(d.value) - scaleMargin)
                 .attr('height', length - verScale(d.value) + scaleMargin)
-                .attr('transform', `translate(${-scaleMargin/4},0)`);
+                .attr('transform', `translate(${-scaleMargin/4},0)`)
+                .style('fill', (d.value === minVal) ? 'lightpink' : ((d.value === maxVal) ? 'lightblue' : 'lightgreen'));
         
         g.append('text')
             .attr('class', 'val')
-            .attr('x', horScale(d.year))
-            .attr('y', verScale(d.value) - 15)
+            .attr('x', horScale(d.year) + scaleMargin)
+            .attr('y', verScale(d.value) - scaleMargin * 3/2)
             .attr('font-size', '10px')
             .text(`$${d.value}`);
     }
@@ -118,9 +123,14 @@ data15.then(function(data) {
                 .attr('x', horScale(d.year))
                 .attr('y', verScale(d.value))
                 .attr('height', length - verScale(d.value))
-                .attr('transform', `translate(0,0)`);
+                .attr('transform', `translate(0,0)`)
+                .style('fill', (d.value === minVal) ? minCol : ((d.value === maxVal) ? maxCol : 'green'));
 
         d3.selectAll('.val')
             .remove()
     }
 });
+
+d3.select('.answer-grid')
+    .append('p')
+    .text('Red: Min Value; Green: Normal Value; Blue: Max Value.')

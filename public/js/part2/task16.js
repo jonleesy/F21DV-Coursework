@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 15;
+const ex = 16;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -102,8 +102,8 @@ data15.then(function(data) {
         
         g.append('text')
             .attr('class', 'val')
-            .attr('x', horScale(d.year))
-            .attr('y', verScale(d.value) - 15)
+            .attr('x', horScale(d.year) + scaleMargin)
+            .attr('y', verScale(d.value) - scaleMargin * 3/2)
             .attr('font-size', '10px')
             .text(`$${d.value}`);
     }
