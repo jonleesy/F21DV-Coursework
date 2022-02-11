@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 30;
+const ex = 31;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -44,9 +44,12 @@ function ticked() {
 
     // Define mouse over function.
     function onMOuseOver(_, d) {
-        // Change oppacity on hover
+        // Change oppacity and COLOUR on hover
         d3.select(this)
-            .attr('opacity', 0.9);
+            // .attr('opacity', 0.9)
+            .attr('fill', colour(d3.select(this).attr('fill') + 0.1));
+
+        console.log(d3.select(this).attr('fill'), colour(d.index))
 
         // Put Label.
         svg.append('g')
@@ -58,9 +61,10 @@ function ticked() {
 
     // Define mouse exit function.
     function onMouseExit(_, d) {
-        // Revert d3 element attr.
+        // Revert d3 element attr (COLOUR).
         d3.select(this)
-            .attr('opacity', 1.0);
+            // .attr('opacity', 1.0)
+            .attr('fill', colour(d.index));
 
         // Select text and remove.
         d3.selectAll(`text`)
