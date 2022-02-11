@@ -1,4 +1,3 @@
-
 // .js script for exercise:
 const ex = 27;
 
