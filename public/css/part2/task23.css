@@ -1,0 +1,8 @@
+.inner-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 50px;
+    grid-gap: 10px;
+    background-color: #262c3046;
+    padding: 10px;
+}
