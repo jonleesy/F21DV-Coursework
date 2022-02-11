@@ -20,11 +20,11 @@ d3.select('.answer-grid')
 // Have to manually scale due to grid spacing.
 // Define the horizontal scale.
 const horScale = d3.scaleLinear()
-                    .domain([28, 549])
+                    .domain([0, 400])
                     .range([0, svgLength]);
 // Define the vertical scale.
 const verScale = d3.scaleLinear()
-                    .domain([593, 70])
+                    .domain([400, 0])
                     .range([svgLength, 0]);
 
 // Add 'empty' text.                    
@@ -40,6 +40,7 @@ d3.select('.svg-element')
 d3.selectAll('.svg-element')
     .on('mousemove', function(e) {
         const data = d3.pointer(e)
+        console.log(data)
         let x = horScale(data[0]), y = verScale(data[1]);
         d3.select('.moving-text')
             .attr('x', x)

@@ -123,7 +123,7 @@ buttonGrid.selectAll('div')
                     .text(d => d);
 
 // Add mouse events.
-d3.select('.apple')
+d3.select('.Apple')
     .on('click', function() {
         update(dataset.apples);
     })
@@ -135,7 +135,7 @@ d3.select('.apple')
         d3.select(this)
         .style('background-color', 'red')
     });
-d3.select('.lemons')
+d3.select('.Lemon')
     .on('click', function() {
         update(dataset.lemons);
     })
