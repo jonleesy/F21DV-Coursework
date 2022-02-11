@@ -16,8 +16,8 @@ d3.select('.answer-grid')
         .attr('height',height);
 
 // generate some random data
-const nodes = await d3.csv('../../data/part2/task30.csv')
- 
+const nodes = await d3.csv('../../data/part2/task30.csv');
+
 const simulation = d3.forceSimulation(nodes)
                     // .force('charge', d3.forceManyBody().strength(5))
                     .force('charge', d3.forceManyBody().strength(-10))
@@ -37,38 +37,39 @@ function ticked() {
     
     svg.selectAll('circle')
         .data(nodes)
-        .join('circle')
-            .attr('fill', (_, i) => `${colour(i)}`)
-            .attr('r', d => d.radius)
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y)
-            .on('mouseover', onMOuseOver)
-            .on('mouseleave', onMouseExit)
+        .join(
+            enter => enter.append('circle')
+                .attr('fill', (_, i) => `${colour(i)}`)
+                .on('mouseover', onMOuseOver)
+                .on('mouseleave', onMouseExit),
+            update => update.attr('r', d => d.radius)
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y)
+        )
 
     // Define mouse over function.
     function onMOuseOver(_, d) {
-        // Change oppacity and COLOUR on hover
+        // Change oppacity on hover
         d3.select(this)
-            .attr('fill', colour(d.index + 0.1));
-
-        console.log(d3.select(this).attr('fill'), colour(d.index))
+            .attr('fill', colour(d.index + 1));
 
         // Put Label.
         svg.append('g')
+            .attr('class', 'temp')
             .append('text')
-            .attr('x', d.x)
-            .attr('y', d.y)
-            .text(`r: ${d.radius}`);
+                .attr('x', d.x)
+                .attr('y', d.y)
+                .text(`r: ${d.radius}`);
     }
 
     // Define mouse exit function.
     function onMouseExit(_, d) {
-        // Revert d3 element attr (COLOUR).
+        // Revert d3 element attr.
         d3.select(this)
             .attr('fill', colour(d.index));
 
         // Select text and remove.
-        d3.selectAll(`text`)
+        d3.selectAll(`.temp`)
             .remove();
     }
 }

@@ -50,10 +50,11 @@ function ticked() {
 
         // Put Label.
         svg.append('g')
+            .attr('class', 'temp')
             .append('text')
-            .attr('x', d.x)
-            .attr('y', d.y)
-            .text(`r: ${d.radius}`);
+                .attr('x', d.x)
+                .attr('y', d.y)
+                .text(`r: ${d.radius}`);
     }
 
     // Define mouse exit function.
@@ -63,7 +64,7 @@ function ticked() {
             .attr('opacity', 1.0);
 
         // Select text and remove.
-        d3.selectAll(`text`)
+        d3.selectAll(`.temp`)
             .remove();
     }
 }
