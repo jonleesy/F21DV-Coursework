@@ -17,8 +17,6 @@ d3.select('.answer-grid')
 
 // generate some random data
 const nodes = await d3.csv('../../data/part2/task29.csv')
-
-console.log(nodes)
  
 const simulation = d3.forceSimulation(nodes)
                     .force('charge', d3.forceManyBody().strength(5))

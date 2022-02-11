@@ -21,8 +21,6 @@ const nodes = d3.range(numNodes)
                 .map(function(d) {
                     return {radius: Math.random() * 25}
                 })
-
-console.log(nodes)
  
 const simulation = d3.forceSimulation(nodes)
                     .force('charge', d3.forceManyBody().strength(5))
