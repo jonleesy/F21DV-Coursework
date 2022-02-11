@@ -46,8 +46,7 @@ function ticked() {
     function onMOuseOver(_, d) {
         // Change oppacity and COLOUR on hover
         d3.select(this)
-            // .attr('opacity', 0.9)
-            .attr('fill', colour(d3.select(this).attr('fill') + 0.1));
+            .attr('fill', colour(d.index + 0.1));
 
         console.log(d3.select(this).attr('fill'), colour(d.index))
 
@@ -63,7 +62,6 @@ function ticked() {
     function onMouseExit(_, d) {
         // Revert d3 element attr (COLOUR).
         d3.select(this)
-            // .attr('opacity', 1.0)
             .attr('fill', colour(d.index));
 
         // Select text and remove.
