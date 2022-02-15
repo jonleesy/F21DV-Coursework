@@ -10,8 +10,9 @@ createAnswerDivSmall(ex);
 /**
  * Function appends div to the answer grid.
  * Then creates a looping transition.
- * @param {*} easeMethod 
- * @param {*} easeMethodStr 
+ * @param {*} easeMethod different d3 ease method.
+ * @param {*} easeMethodStr same thing easeMethod, except in string
+ * for text display.
  */
 function divTransition(easeMethod, easeMethodStr) {
     const divSelect = d3.select('.answer-grid-small')
@@ -36,7 +37,7 @@ function divTransition(easeMethod, easeMethodStr) {
                         .duration(1500)
                         .style('width', '210px')
                         .style('background-color', 'lightblue')
-                        // Calling itself again upon end
+                        // Calling itself again upon end.
                         .on('end', repeatTransition);
     }
 }

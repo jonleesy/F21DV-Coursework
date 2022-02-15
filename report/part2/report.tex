@@ -229,8 +229,8 @@ Figure \ref{fig:ex2} shows 4 blocks with different colours. The blocks are just 
 \section{Exercise 3}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width = 7.5cm]{images/ex3_1.png}
-    \includegraphics[width = 7.5cm]{images/ex3_2.png}
+    \includegraphics[width = 7cm]{images/ex3_1.png}
+    \includegraphics[width = 7cm]{images/ex3_2.png}
     \label{fig:ex3}
     \caption{Exercise 3}
 \end{figure}
@@ -250,6 +250,8 @@ Figure \ref{fig:ex3} shows a block thats green colour. Upon mouse hover on the b
 \FloatBarrier
 % \lstinputlisting[language=JavaScript]{../../public/js/part2/task4.js}
 Figure \ref{fig:ex4} shows an SVG object with a circle in the middle. Upon hovering on the circle, the circle enlarges. This time, the action was modeled using d3 transitions instead of css :hover method. I've added transtitions upon mouse hover and out.
+\section{Exercise 10}
+Exactly the same as exercise 4, just that the ease method has been changed to \verb|d3.easeBounce|.
 
 \newpage
 \section{Exercise 5}
@@ -278,4 +280,33 @@ Figure \ref{fig:ex5} shows an emptey svg object, and upon mouse hover, it would 
 \lstinputlisting[language=JavaScript]{../../public/js/part2/task6.js}
 Figure \ref{fig:ex6} shows a coloured div with a number on it. On click, this div will transition to ``2'' and change to red, and then to ``3'' and then to green. Finally it will transition back to the original form. From listing above, we could see that this is done by using the transition upon mouse click, then changing the attributes of the div.
 
+\newpage
+\section{Exercise 7}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex7_1.png}
+    \includegraphics[width = 7.5cm]{images/ex7_2.png}
+    \includegraphics[width = 7.5cm]{images/ex7_3.png}
+    \label{fig:ex7}
+    \caption{Exercise 7}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task7.js}
+Figure \ref{fig:ex7} shows the changes of a div upon clicking. This is pretty much the same as the one in exercise 6, except that I have added a transition to the size of the div.
+\section{Exercise 8}
+Exercise 8 is the same as 7, instead, the mouse action is now changed from click to hover.
+
+\newpage
+\section{Exercise 9}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex9_1.png}
+    \includegraphics[width = 7.5cm]{images/ex9_2.png}
+    \includegraphics[width = 7.5cm]{images/ex9_3.png}
+    \label{fig:ex9}
+    \caption{Exercise 9}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task7.js}
+Figure \ref{fig:ex9} shows the difference in the transition ease method. The figure shows two divs, one using the \verb|d3.easeLinear| method and the other using \verb|d3.easeBounce|. Both divs have the same transition endpoint and duration, but in between, due to the different ease method they woudl appear differently as shown in the second picture. This page also uses the d3 \verb|.on(`end', ...)| function, which allows the transtion to start on load of the page, and just loop through.
 \end{document}

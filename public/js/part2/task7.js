@@ -7,6 +7,7 @@ import { createAnswerDivSmall } from '../functions.js';
 // Creating base <div>s systematically.
 createAnswerDivSmall(ex);
 
+// Add the original div.
 d3.select('.answer-grid-small')
     .append('div')
         .style('width', '210px')
@@ -14,6 +15,7 @@ d3.select('.answer-grid-small')
         .style('background-color', 'blue')
         .text('1');
 
+// Add div transition (colour, width and text)
 d3.select('.answer-grid-small div')
     .on('click', function() {
         d3.select(this)
@@ -34,6 +36,7 @@ d3.select('.answer-grid-small div')
                 .text('1')
     });
 
+// Add Instructions
 d3.select('.answer-grid-small')
     .append('p')
     .text('Click on colour box to change colour and box size.')

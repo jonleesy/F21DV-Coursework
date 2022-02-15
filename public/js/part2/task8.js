@@ -7,6 +7,7 @@ import { createAnswerDivSmall } from '../functions.js';
 // Creating base <div>s systematically
 createAnswerDivSmall(ex);
 
+// Add original div.
 d3.select('.answer-grid-small')
     .append('div')
         .style('width', '210px')
@@ -14,8 +15,11 @@ d3.select('.answer-grid-small')
         .style('background-color', 'blue')
         .text('1');
 
+// Add mouse over action. Div changes on mouse over
+// and reverts on mouse leave.
 d3.select('.answer-grid-small div')
     .on('mouseenter', function() {
+        // Add transtion for mouse enter.
         d3.select(this)
             .transition()
                 .duration(1000)
@@ -28,6 +32,7 @@ d3.select('.answer-grid-small div')
                 .style('width', '120px')
                 .text('3')
     })
+    // Add transtion for mouse leave.
     .on('mouseleave', function() {
         d3.select(this)
             .transition()
@@ -37,6 +42,7 @@ d3.select('.answer-grid-small div')
                 .text('1')
     });
 
+// Add instruction.
 d3.select('.answer-grid-small')
     .append('p')
     .text('Hover on colour box to change colour and box size.')
