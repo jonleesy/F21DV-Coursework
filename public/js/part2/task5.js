@@ -10,6 +10,7 @@ createAnswerDiv(ex);
 // Svg constants.
 let svgLength = '400px';
 
+// Add the svg.
 d3.select('.answer-grid')
     .append('svg')
         .attr('width', svgLength)
@@ -33,6 +34,7 @@ d3.select('.svg-element')
         .attr('class', 'moving-text')
         .attr('x', 100)
         .attr('y', 100)
+        // Hide the text.
         .attr('opacity', 0)
         .style('font-size', '15px');
 
@@ -40,17 +42,19 @@ d3.select('.svg-element')
 d3.selectAll('.svg-element')
     .on('mousemove', function(e) {
         const data = d3.pointer(e)
-        console.log(data)
         let x = horScale(data[0]), y = verScale(data[1]);
         d3.select('.moving-text')
             .attr('x', x)
             .attr('y', y)
+            // Show the text.
             .attr('opacity', 1)
+            // First two char of string only.
             .text(`x: ${x.substr(0, x.indexOf('.'))},
                    y: ${y.substr(0, y.indexOf('.'))}`)
     })
     .on('mouseleave', function() {
         d3.select('.moving-text')
+            // Hide the text
             .attr('opacity', 0)
             .text('')
     });

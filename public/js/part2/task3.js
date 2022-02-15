@@ -4,20 +4,21 @@ const ex = 3;
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
 
-// Creating base <div>s systematically
+// Creating base <div>s systematically.
 createAnswerDiv(ex);
 
-// Using a different CSS property for a smaller grid size
+// Adding the original div.
 d3.select('.grid-container')
     .append('div')
-    .attr('class', 'answer-grid-small')
-    .style('width', 'auto')
-    .style('height', '100px')
-    .style('background-color', 'green')
-    .style('border-style', 'solid');
+        .attr('class', 'answer-grid-small')
+        .style('width', 'auto')
+        .style('height', '100px')
+        .style('background-color', 'green')
+        .style('border-style', 'solid');
 
+// Change colour, border and text, using .on() mouse over and out.
 d3.select('.answer-grid-small')
-    .on('mouseover', function(e) {
+    .on('mouseover', function() {
         d3.select(this)
             .style('background-color', 'orange')
             .style('border-style', 'dotted')

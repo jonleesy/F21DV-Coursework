@@ -23,7 +23,7 @@
 
 
 \setlength{\parindent}{0em}
-% \setlength{\parskip}{1.0em}
+\setlength{\parskip}{1.0em}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -94,7 +94,7 @@ captionpos=b
 
 \pagenumbering{gobble}
 
-\title{F21DV Coursework Part 2 Report}
+\title{F21DV Coursework Lab 2 Report}
 \author{Jonathan Song Yang, Lee (H00255553)}
 \date{Demonstrated to: Amit Parekh (11/02/2022)}
 
@@ -110,6 +110,158 @@ captionpos=b
 
 \newpage
 \chapter{Introduction}
+Lab 2 focuses on using \verb|d3.js| for dynamic and interactive visualisation concepts. It was meant to be a step-up from Lab 1, where we were taught the basics of d3.js. 
+\par Github Repo: \href{https://github.com/jonleesy/F21DV-Coursework}{https://github.com/jonleesy/F21DV-Coursework}
+\par Github Pages: \href{https://jonleesy.github.io/F21DV-Coursework/public}{https://jonleesy.github.io/F21DV-Coursework/public}
 
+\section{Set-up}
+The set-up for this lab is the same as the Lab 1, but instead of using hard coded div properties, I have implemented CSS grid for aligning divs and webpage objects, as recommended by my lab 1's lab helper. 
+\begin{lstlisting}[language=JavaScript,
+    caption={Old Method},
+    captionpos=b,
+    label={lst:Olddiv}]
+    /**
+    * Create div's for each question systematically.
+    * @param {*} exerciseNumber Task number.
+    */
+   export function createDiv(exerciseNumber) {
+       d3.select('body')
+           .append('div')
+               .attr('class', 'container')
+               .append('div')
+                   .attr('class', 'answerCenter')
+                   .append('p')
+                       .append('strong')
+                           .text('Exercise ' + exerciseNumber + ':')
+   }
+\end{lstlisting}
+\begin{lstlisting}[language=JavaScript,
+    caption={New Method},
+    captionpos=b,
+    label={lst:newDiv}]
+    /**
+    * Similar to createDiv(). Was told to look into 
+    * grid instead of using hard coded div settings.
+    * This one focuses on that, and will be used starting 
+    * from lab2.
+    * @param {*} exerciseNumber 
+    */
+   export function createAnswerDiv(exerciseNumber) {
+       d3.select('body')
+           .append('div')
+               .attr('class', 'grid-container')
+               .append('div')
+                   .attr('class', 'title-grid')
+                   .append('p')
+                           .append('strong')
+                               .text('Exercise ' + exerciseNumber + ':')
+       d3.select('.grid-container')
+           .append('div')
+           .attr('class', 'answer-grid')
+   }
+\end{lstlisting}
+\begin{lstlisting}[language=JavaScript,
+    caption={New CSS Method},
+    captionpos=b,
+    label={lst:newCSS}]
+    /* Part 2 onwards CSS using grid */
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto 100px 100px 100px 100px auto;
+        grid-template-rows: 60px auto auto auto auto auto;
+        grid-gap: 10px;
+        /* background-color: #262c3046; */
+        padding: 10px;
+    }
+    
+    .grid-container > div {
+        background-color: rgb(226, 238, 240);
+        padding: 20px 0;
+    }
+    
+    .title-grid {
+        grid-area: 1 / 2 / 1 / 6;
+        text-align: left;
+        text-indent: 20%;
+    }
+    
+    .answer-grid {
+        grid-area: 2 / 2 / 6 / 6;
+        text-align: center;
+        align-content: center;
+    }
+    
+    .answer-grid-small {
+        grid-area: 2 / 3 / 6 / 5;
+        text-align: center;
+        align-content: center;
+    }
+\end{lstlisting}
+Looking at listing \ref{lst:Olddiv} and \ref{lst:newDiv}, the only difference is with the new grid (\verb|grid-container|) being added, then adding a smaller answer fiv with class \verb|answer-grid| afterwards. The preperties of these grids above are shown in listing \ref{lst:newCSS}.
+
+\newpage
+\chapter{Exercises}
+\section{Exercise 1}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex1_1.png}
+    \includegraphics[width = 7.5cm]{images/ex1_2.png}
+    \label{fig:ex1}
+    \caption{Exercise 1}
+\end{figure}
+\FloatBarrier
+Figure \ref{fig:ex1} shows a line chart with data points plotted on it. The right figure shows what happens when the mouse hovers upon a data point, the data point would pulse between red and green. *\textit{Can't seem to take a screenshot and capture the pointer}.
+
+\newpage
+\section{Exercise 2}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex2_1.png}
+    \includegraphics[width = 7.5cm]{images/ex2_2.png}
+    \label{fig:ex2}
+    \caption{Exercise 2}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task2.js}
+Figure \ref{fig:ex2} shows 4 blocks with different colours. The blocks are just a div defined within a grid. Each block also has a fill colour defined using the \verb|Rgb()| colour method, as shown in line 10. Upon hovering the mouse on the div, the div would show a text element displaying the Rgb colour. This effect is done using the css \verb|:hover| method.
+
+\newpage
+\section{Exercise 3}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex3_1.png}
+    \includegraphics[width = 7.5cm]{images/ex3_2.png}
+    \label{fig:ex3}
+    \caption{Exercise 3}
+\end{figure}
+\FloatBarrier
+\lstinputlisting[language=JavaScript]{../../public/js/part2/task3.js}
+Figure \ref{fig:ex3} shows a block thats green colour. Upon mouse hover on the box, the box now shows a text that says `Pointer is in the box', its colour is now orange, and it has a new type of border. This is done using the \verb|.on()| function.
+
+\newpage
+\section{Exercise 4}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex4_1.png}
+    \includegraphics[width = 7.5cm]{images/ex4_2.png}
+    \label{fig:ex4}
+    \caption{Exercise 4}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task4.js}
+Figure \ref{fig:ex4} shows an SVG object with a circle in the middle. Upon hovering on the circle, the circle enlarges. This time, the action was modeled using d3 transitions instead of css :hover method. I've added transtitions upon mouse hover and out.
+
+\newpage
+\section{Exercise 4}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex5.png}
+    % \includegraphics[width = 7.5cm]{images/ex4_2.png}
+    \label{fig:ex5}
+    \caption{Exercise 5}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task5.js}
+Figure \ref{fig:ex4} shows an emptey svg object, and upon mouse hover, it would show the corredinated of the mouse. There was also a pre-appended empty text box. To show the x-y coordinates, this is done using the event data of the mouse movement. Then using the data, I modified the `x' and `y' attribute of the text box.
 
 \end{document}

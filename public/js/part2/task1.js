@@ -28,7 +28,6 @@ svg.svg.append('path')
 svg.svg.selectAll('circle')
     .data(data)
     .enter()
-        // Using a dummy so that circle would not translate during hover action.
         .append('g')
             .attr('transform', d => `translate(${svg.horScale(d.x)}, ${svg.verScale(d.y)})`)
             .append('circle')
