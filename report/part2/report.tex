@@ -252,7 +252,7 @@ Figure \ref{fig:ex3} shows a block thats green colour. Upon mouse hover on the b
 Figure \ref{fig:ex4} shows an SVG object with a circle in the middle. Upon hovering on the circle, the circle enlarges. This time, the action was modeled using d3 transitions instead of css :hover method. I've added transtitions upon mouse hover and out.
 
 \newpage
-\section{Exercise 4}
+\section{Exercise 5}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width = 7.5cm]{images/ex5.png}
@@ -262,6 +262,20 @@ Figure \ref{fig:ex4} shows an SVG object with a circle in the middle. Upon hover
 \end{figure}
 \FloatBarrier
 % \lstinputlisting[language=JavaScript]{../../public/js/part2/task5.js}
-Figure \ref{fig:ex4} shows an emptey svg object, and upon mouse hover, it would show the corredinated of the mouse. There was also a pre-appended empty text box. To show the x-y coordinates, this is done using the event data of the mouse movement. Then using the data, I modified the `x' and `y' attribute of the text box.
+Figure \ref{fig:ex5} shows an emptey svg object, and upon mouse hover, it would show the corredinated of the mouse. There was also a pre-appended empty text box. To show the x-y coordinates, this is done using the event data of the mouse movement. Then using the data, I modified the `x' and `y' attribute of the text box.
+
+\newpage
+\section{Exercise 6}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex6_1.png}
+    \includegraphics[width = 7.5cm]{images/ex6_2.png}
+    \includegraphics[width = 7.5cm]{images/ex6_3.png}
+    \label{fig:ex6}
+    \caption{Exercise 6}
+\end{figure}
+\FloatBarrier
+\lstinputlisting[language=JavaScript]{../../public/js/part2/task6.js}
+Figure \ref{fig:ex6} shows a coloured div with a number on it. On click, this div will transition to ``2'' and change to red, and then to ``3'' and then to green. Finally it will transition back to the original form. From listing above, we could see that this is done by using the transition upon mouse click, then changing the attributes of the div.
 
 \end{document}
