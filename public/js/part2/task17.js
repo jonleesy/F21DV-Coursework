@@ -44,7 +44,7 @@ const g = svg.append('g')
 
 // Processing the Csv.
 data15.then(function(data) {
-    // Local Variables
+    // Local Variables for conditional fill later on. 
     let scaleMargin = 10,
         minVal = d3.min(data, d => d.value),
         maxVal = d3.max(data, d => d.value),
@@ -94,7 +94,9 @@ data15.then(function(data) {
                 .delay((_, i) => i * 50)
                 .attr('height', d => length - verScale(d.value))
 
-    function onMouseOver(e, d) {
+    // define mouse over function.
+    function onMouseOver(_, d) {
+        // Add a high light class.
         d3.select(this)
             .attr('class', 'highlight')
             .transition()
@@ -103,8 +105,9 @@ data15.then(function(data) {
                 .attr('y', verScale(d.value) - scaleMargin)
                 .attr('height', length - verScale(d.value) + scaleMargin)
                 .attr('transform', `translate(${-scaleMargin/4},0)`)
+                // Conditional Fill.
                 .style('fill', (d.value === minVal) ? 'lightpink' : ((d.value === maxVal) ? 'lightblue' : 'lightgreen'));
-        
+        // Ass a text on top og the bar.
         g.append('text')
             .attr('class', 'val')
             .attr('x', horScale(d.year) + scaleMargin)
@@ -113,9 +116,11 @@ data15.then(function(data) {
             .text(`$${d.value}`);
     }
 
-    function onMouseOut(e, d) {
+    // Mouse Out function.
+    function onMouseOut(_, d) {
         d3.select(this)
             .attr('class', 'bar')
+        // Undo bar change.
         d3.select(this)
             .transition()
                 .duration(400)
@@ -125,12 +130,13 @@ data15.then(function(data) {
                 .attr('height', length - verScale(d.value))
                 .attr('transform', `translate(0,0)`)
                 .style('fill', (d.value === minVal) ? minCol : ((d.value === maxVal) ? maxCol : 'green'));
-
+        // Remove the text.
         d3.selectAll('.val')
             .remove()
     }
 });
 
+// Colour explaination.
 d3.select('.answer-grid')
     .append('p')
     .text('Red: Min Value; Green: Normal Value; Blue: Max Value.')

@@ -90,7 +90,9 @@ data15.then(function(data) {
                 .delay((_, i) => i * 50)
                 .attr('height', d => length - verScale(d.value))
 
-    function onMouseOver(e, d) {
+    // On mouse over function.
+    function onMouseOver(_, d) {
+        // Highlight the bars
         d3.select(this)
             .attr('class', 'highlight')
             .transition()
@@ -100,6 +102,7 @@ data15.then(function(data) {
                 .attr('height', length - verScale(d.value) + scaleMargin)
                 .attr('transform', `translate(${-scaleMargin/4},0)`);
         
+        // Add the text on top of the bars
         g.append('text')
             .attr('class', 'val')
             .attr('x', horScale(d.year) + scaleMargin)
@@ -108,9 +111,12 @@ data15.then(function(data) {
             .text(`$${d.value}`);
     }
 
-    function onMouseOut(e, d) {
+    // Add mouse out function
+    function onMouseOut(_, d) {
+        // Asign to a css class.
         d3.select(this)
             .attr('class', 'bar')
+        // Add out-transition
         d3.select(this)
             .transition()
                 .duration(400)
@@ -120,6 +126,7 @@ data15.then(function(data) {
                 .attr('height', length - verScale(d.value))
                 .attr('transform', `translate(0,0)`);
 
+        // Select the text box and remove it.
         d3.selectAll('.val')
             .remove()
     }

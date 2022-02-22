@@ -11,7 +11,8 @@ createAnswerDiv(ex);
 const data15 = d3.csv('../../data/part2/task15.csv');
 
 // Svg Constants.
-let svgLength = 420;
+const svgLength = 420;
+const transitionDuration = 400;
 
 // Adding the svg object.
 const svg = d3.select('.answer-grid')
@@ -85,21 +86,23 @@ data15.then(function(data) {
             .attr('y', d => verScale(d.value))
             .attr('width', horScale.bandwidth())
             .transition()
-                .duration(400)
+                .duration(transitionDuration)
                 .ease(d3.easeLinear)
                 .delay((_, i) => i * 50)
                 .attr('height', d => length - verScale(d.value))
 
-    function onMouseOver(e, d) {
+    // On mouse over function.
+    function onMouseOver(_, d) {
+        // Highlight the bars
         d3.select(this)
             .attr('class', 'highlight')
             .transition()
-                .duration(400)
+                .duration(transitionDuration)
                 .attr('width', horScale.bandwidth() + scaleMargin/2)
                 .attr('y', verScale(d.value) - scaleMargin)
                 .attr('height', length - verScale(d.value) + scaleMargin)
                 .attr('transform', `translate(${-scaleMargin/4},0)`);
-        
+        // Add the text on top of the bars
         g.append('text')
             .attr('class', 'val')
             .attr('x', horScale(d.year))
@@ -108,18 +111,22 @@ data15.then(function(data) {
             .text(`$${d.value}`);
     }
 
-    function onMouseOut(e, d) {
+    // Add mouse out function
+    function onMouseOut(_, d) {
+        // Asign to a css class.
         d3.select(this)
             .attr('class', 'bar')
+        // Add out-transition
         d3.select(this)
             .transition()
-                .duration(400)
+                .duration(transitionDuration)
                 .attr('width', horScale.bandwidth())
                 .attr('x', horScale(d.year))
                 .attr('y', verScale(d.value))
                 .attr('height', length - verScale(d.value))
                 .attr('transform', `translate(0,0)`);
-
+                
+        // Select the text box and remove it.
         d3.selectAll('.val')
             .remove()
     }

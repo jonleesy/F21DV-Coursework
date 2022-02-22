@@ -309,4 +309,106 @@ Exercise 8 is the same as 7, instead, the mouse action is now changed from click
 \FloatBarrier
 % \lstinputlisting[language=JavaScript]{../../public/js/part2/task7.js}
 Figure \ref{fig:ex9} shows the difference in the transition ease method. The figure shows two divs, one using the \verb|d3.easeLinear| method and the other using \verb|d3.easeBounce|. Both divs have the same transition endpoint and duration, but in between, due to the different ease method they woudl appear differently as shown in the second picture. This page also uses the d3 \verb|.on(`end', ...)| function, which allows the transtion to start on load of the page, and just loop through.
+
+\newpage
+\section{Exercise 11}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex11_1.png}
+    \includegraphics[width = 7.5cm]{images/ex11_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex9_3.png}
+    \label{fig:ex11}
+    \caption{Exercise 11}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task7.js}
+Figure \ref{fig:ex11} shows a text on an svg, that changes colour and size on hover, and reverts back to its original state after the mouse leaves.
+
+\newpage
+\section{Exercise 12}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex12_1.png}
+    \includegraphics[width = 7.5cm]{images/ex12_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex9_3.png}
+    \label{fig:ex12}
+    \caption{Exercise 12}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task12.js}
+Figure \ref{fig:ex12} shows an svg annimation that works on load. On load, three bars of different sizes start would start to form, one after another. This transition starts on page load. The transition between each block is being delayed so that they start one after another.
+
+\newpage
+\section{Exercise 13}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex13_1.png}
+    \includegraphics[width = 7.5cm]{images/ex13_2.png}
+    \includegraphics[width = 7.5cm]{images/ex13_3.png}
+    \label{fig:ex13}
+    \caption{Exercise 13}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task12.js}
+Figure \ref{fig:ex13} shows the same svg animation as the one in exercise 12. This time, the annimation would annimate out just like the figure above, in the same sequence and the starting annimation.
+
+\newpage
+\section{Exercise 14}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex14_1.png}
+    \includegraphics[width = 7.5cm]{images/ex14_2.png}
+    \includegraphics[width = 7.5cm]{images/ex14_3.png}
+    \label{fig:ex14}
+    \caption{Exercise 14}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task12.js}
+Figure \ref{fig:ex14} shows the same svg animation as the one in exercise 13. THe difference is that now the annimation would change from blue to red upon the start annimation, and would change from red back to blue for the eciting annimation.
+
+\newpage
+\section{Exercise 15}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex15_1.png}
+    \includegraphics[width = 7.5cm]{images/ex15_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex14_3.png}
+    \label{fig:ex15}
+    \caption{Exercise 15}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task12.js}
+Figure \ref{fig:ex15} shows a bar chart upon load. Upon hover of a specific bar chart, the bar chart would enlarge itself, and show its actual y-axis value (price of stock) on top of the bar.
+
+\newpage
+\section{Exercise 16}
+\begin{figure}[!ht]
+    \centering
+    % \includegraphics[width = 7.5cm]{images/ex15_1.png}
+    \includegraphics[width = 7.5cm]{images/ex15_2.png}
+    \includegraphics[width = 7.5cm]{images/ex16.png}
+    \label{fig:ex16}
+    \caption{Exercise 16}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task12.js}
+Figure \ref{fig:ex16} shows a bar chart upon load, asme as the one shown in example 15, figure \ref{fig:ex15}. The difference is that now on hover, the price shown on top of the bar is centered in the middle instead of on the side. 
+
+\newpage
+\section{Exercise 17}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex17_1.png}
+    \includegraphics[width = 7.5cm]{images/ex17_2.png}
+    \includegraphics[width = 7.5cm]{images/ex17_3.png}
+    \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex17}
+    \caption{Exercise 17}
+\end{figure}
+\FloatBarrier
+\lstinputlisting[language=JavaScript]{../../public/js/part2/task17.js}
+Figure \ref{fig:ex17} shows a bar chart upon load, asme as the one shown in example 15 and 16. The difference is that the bars are now colour coded. Upon Hover, the bars would still show a different colour, as shown in the images above.  
+
+\subsection{Explaination for Exercise 15 to 17.}
+Exercise 15-17's price tag text is transitioned by adding a \verb|text| item each time on mouse over. And Removed everytime on mouse out.
 \end{document}
