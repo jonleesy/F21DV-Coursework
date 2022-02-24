@@ -109,7 +109,7 @@ buttonGrid.selectAll('div')
                 .append('p')
                     .text(d => d);
 
-// Add mouse events.
+// Add mouse events for buttons.
 d3.select('.data1')
     .on('click', function() {
         update(data1);

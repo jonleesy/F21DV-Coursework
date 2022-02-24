@@ -63,6 +63,7 @@ function update(data) {
     const u = svg.selectAll('rect')
                 .data(data)
 
+    // enter function.
     u.enter()
         .append('rect')
         .merge(u)

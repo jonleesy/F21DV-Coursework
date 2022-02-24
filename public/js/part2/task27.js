@@ -67,6 +67,7 @@ function update(data) {
     // Add a path object.
     let path = svg.selectAll('path')
                     .data(pie(was))
+    // Enter function
     path.enter()
         .insert('path')
             .style('fill', (_, i) => colour(i))
@@ -74,9 +75,11 @@ function update(data) {
                 this._current = d;
             })
 
+    // Add pie chart path. (old data)
     path = svg.selectAll('path')
                 .data(pie(is))
 
+    // Add transition.
     path.transition()
         .duration(400)
         .attrTween('d', function(d) {
@@ -89,22 +92,28 @@ function update(data) {
             }
         })
 
+    // Path for "new data".
     path = svg.selectAll('path')
                 .data(pie(data))
 
+    // Remove unwanted on exit
     path.exit()
         .transition()
         .delay(400)            
         .duration(0)
         .remove()
 
+    // Current data is now "old",
+    // readdy to transition to another
+    // New data.
     currentData = data;            
 }
 
+// update the dataset.
 update(dataset.apples)
 
 
-// Add buttons to activate data 1,2,3
+// Add buttons to activate data 1,2
 const buttonGrid = d3.select('.answer-grid')
                     .append('div')
                         .attr('class', 'inner-grid');

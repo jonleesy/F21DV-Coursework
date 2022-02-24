@@ -18,13 +18,13 @@ d3.select('.answer-grid')
 // generate some random data
 const nodes = await d3.csv('../../data/part2/task30.csv')
  
-const simulation = d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody().strength(5))
-                    .force('center', d3.forceCenter(width / 2, height / 2))
-                    .force('collision', d3.forceCollide().radius(function(d) {
-                                                                    return d.radius
-                                                                }))
-                    .on('tick', ticked);
+d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(5))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(function(d) {
+                                                    return d.radius
+                                                }))
+    .on('tick', ticked);
 
 // Colour Scheme.
 const colour = d3.scaleOrdinal().range(d3.schemePaired);
@@ -58,7 +58,7 @@ function ticked() {
     }
 
     // Define mouse exit function.
-    function onMouseExit(_, d) {
+    function onMouseExit() {
         // Revert d3 element attr.
         d3.select(this)
             .attr('opacity', 1.0);

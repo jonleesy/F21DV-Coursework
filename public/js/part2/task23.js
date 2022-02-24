@@ -51,6 +51,7 @@ svg.append('g')
     .attr('class', 'right-axis')
     .call(d3.axisRight(verScale));
 
+// Define a line.
 const line = d3.line()
                 .x(d => horScale(d.x))
                 .y(d => verScale(d.y))

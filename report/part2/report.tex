@@ -407,8 +407,207 @@ Figure \ref{fig:ex16} shows a bar chart upon load, asme as the one shown in exam
 \end{figure}
 \FloatBarrier
 \lstinputlisting[language=JavaScript]{../../public/js/part2/task17.js}
-Figure \ref{fig:ex17} shows a bar chart upon load, asme as the one shown in example 15 and 16. The difference is that the bars are now colour coded. Upon Hover, the bars would still show a different colour, as shown in the images above.  
+Figure \ref{fig:ex17} shows a bar chart upon load, same as the one shown in example 15 and 16. The difference is that the bars are now colour coded. Upon Hover, the bars would still show a different colour, as shown in the images above.  
 
 \subsection{Explaination for Exercise 15 to 17.}
 Exercise 15-17's price tag text is transitioned by adding a \verb|text| item each time on mouse over. And Removed everytime on mouse out.
+
+
+\newpage
+\section{Exercise 18}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex18_1.png}
+    \includegraphics[width = 7.5cm]{images/ex18_2.png}
+    \includegraphics[width = 7.5cm]{images/ex18_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex18}
+    \caption{Exercise 18}
+\end{figure}
+\FloatBarrier
+\lstinputlisting[language=JavaScript]{../../public/js/part2/task18.js}
+Figure \ref{fig:ex18} shows a bar chart that transitions into a start position showing data 1 upon load. Upon clicking on ``Data 2'', each bar would transition to the new position as shown in the 3-part image above. This is done by using the \verb|.merge()| function as shown.
+
+\newpage
+\section{Exercise 19}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex19.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex19}
+    \caption{Exercise 19}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task18.js}
+Figure \ref{fig:ex19} shows the same bar chart as the one on exercise 18. The only difference is that now each data has its own colour. Transitions are still the same, just that now an extra `color' attribute is being added into the transitions.
+
+\newpage
+\section{Exercise 20}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex20.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex20}
+    \caption{Exercise 20}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task18.js}
+Figure \ref{fig:ex20} shows the same bar chart, just that I have now added a mouse over function to show the actual value of the bars upon hover.
+
+\newpage
+\section{Exercise 21}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex21.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex18_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex21}
+    \caption{Exercise 21}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task18.js}
+Figure \ref{fig:ex21} shows the same bar chart as before, except that there is now an extra axis on top and on the right of the svg.
+
+\newpage
+\section{Exercise 22}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex22_1.png}
+    \includegraphics[width = 7.5cm]{images/ex22_2.png}
+    \includegraphics[width = 7.5cm]{images/ex22_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex22}
+    \caption{Exercise 22}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task18.js}
+Figure \ref{fig:ex22} shows the same bar chart as before, but now I have modified data 2 to contain an extra data entry. The transition here makes used og the \verb|.merge()| function and would help add the extra bar when needed, and would remove it when not in need, all these with annimation.
+
+\newpage
+\section{Exercise 23}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex23_1.png}
+    \includegraphics[width = 7.5cm]{images/ex23_2.png}
+    \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex23}
+    \caption{Exercise 23}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task23.js}
+Figure \ref{fig:ex23} shows a line chart for data 1 on load. Upon clicking the data 2 button, the lines would transition using its datapoints to data 2. The axes would also transition, adding or removing values.
+
+\newpage
+\section{Exercise 24-26}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex24.png}
+    \includegraphics[width = 7.5cm]{images/ex25.png}
+    \includegraphics[width = 7.5cm]{images/ex26.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex24}
+    \caption{Exercise 24 to 26}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task23.js}
+Figure \ref{fig:ex24} shows results of interpolation within \verb|d3|. Interpolation would interpolate between any interpolatable values to find the percentage point between values. Each example and its results are shown in the figure \ref{fig:ex24}.
+
+
+\newpage
+\section{Exercise 27}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex27_1.png}
+    \includegraphics[width = 7.5cm]{images/ex27_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex27}
+    \caption{Exercise 27}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex27} shows a hollow pie chart with data about Apple. Upon clicking the Lemon button, the pie chart would transition and show data on Lemon instead. This is done semalessly once again using the \verb|.merge()| function on the pie chart \verb|line| object.
+
+\newpage
+\section{Exercise 28}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex28_1.png}
+    \includegraphics[width = 7.5cm]{images/ex28_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex28}
+    \caption{Exercise 28}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex28} shows two randomised circles on an svg using d3 force layout. This will be different each time the page is bring loaded. This will be the same for all exercises 28 through 32. This is done by using the d3 \verb|.forceSimulation()| to created node values with radius and many other informnation (force simulation overwrites the nodes data). Then using these information, polulate the svg with circles.
+
+\newpage
+\section{Exercise 29}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex29.png}
+    % \includegraphics[width = 7.5cm]{images/ex28_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex29}
+    \caption{Exercise 29}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex29} shows identical for simulation from the previous exercise. Difference is this is now based off radius values from a \verb|.csv()| file, containing values $1, 1.2, 1.4, ...$. Hence each time the page would show circles with the same position and size upon load each time.
+
+\newpage
+\section{Exercise 30}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex30_1.png}
+    \includegraphics[width = 7.5cm]{images/ex30_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex30}
+    \caption{Exercise 30}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex30} shows similar force sumulation circles as before. This time, I have reduced the number of circles to improve simulation performance, and added a text box upon hover of each cirlce, displaying the circle data | the circle radius. This is shwon in the figure above, before mouse over and after mouse over.
+
+\newpage
+\section{Exercise 31}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex31_1.png}
+    \includegraphics[width = 7.5cm]{images/ex31_2.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex31}
+    \caption{Exercise 31}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex31} shows same force sumulation circles as before. This time, there is just an added colour change to mouse over and out events.
+
+\newpage
+\section{Exercise 32}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width = 7.5cm]{images/ex32.png}
+    % \includegraphics[width = 7.5cm]{images/ex23_3.png}
+    % \includegraphics[width = 7.5cm]{images/ex17_4.png}
+    \label{fig:ex32}
+    \caption{Exercise 32}
+\end{figure}
+\FloatBarrier
+% \lstinputlisting[language=JavaScript]{../../public/js/part2/task27.js}
+Figure \ref{fig:ex32} shows same force sumulation circles as before. This time, I have expeeimented with different forces types. Mainly, this shows the \verb|.force(`y', ...)| type.
+
+
+
 \end{document}

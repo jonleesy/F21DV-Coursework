@@ -15,17 +15,18 @@ const data1 = [
 ];
 
 const data2 = [
-    {group:'A', value:10, color:'blue'},
-    {group:'B', value:2, color:'blue'},
-    {group:'C', value:22, color:'blue'}
+    {group:'A', value:10, color:'green'},
+    {group:'B', value:2, color:'green'},
+    {group:'C', value:22, color:'green'}
 ];
 
 const data3 = [
-    {group:'A', value:6, color:'green'},
-    {group:'B', value:18, color:'green'},
-    {group:'C', value:11, color:'green'}
+    {group:'A', value:6, color:'blue'},
+    {group:'B', value:18, color:'blue'},
+    {group:'C', value:11, color:'blue'}
 ];
 
+// Colours for data.
 const dataColours = ['red', 'green', 'blue'];
 
 // Svg and Graph Constants

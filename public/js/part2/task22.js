@@ -1,5 +1,5 @@
 // .js script for exercise:
-const ex = 21;
+const ex = 22;
 
 // Imports of functions.
 import { createAnswerDiv } from '../functions.js';
@@ -93,6 +93,7 @@ function update(data) {
     const u = svg.selectAll('rect')
                 .data(data)
 
+    // Enter function to add rectangles. 
     u.enter()
         .append('rect')
             .on('mouseover', function(e, d) {                        

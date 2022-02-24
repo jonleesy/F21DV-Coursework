@@ -17,25 +17,27 @@ d3.select('.answer-grid')
 
 // generate some random data
 const nodes = await d3.csv('../../data/part2/task29.csv')
- 
-const simulation = d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody().strength(5))
-                    .force('center', d3.forceCenter(width / 2, height / 2))
-                    .force('collision', d3.forceCollide().radius(function(d) {
-                                                                    return d.radius
-                                                                }))
-                    .on('tick', ticked);
+
+// Simulations
+d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(5))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(function(d) {
+                                                    return d.radius
+                                                }))
+    .on('tick', ticked);
 
 // Colour Scheme.
 const colour = d3.scaleOrdinal().range(d3.schemePaired);
 
+// Tick function.
 function ticked() {
-    const u = d3.select('svg')
-                .selectAll('circle')
-                .data(nodes)
-                .join('circle')
-                    .attr('fill', (_, i) => `${colour(i)}`)
-                    .attr('r', d => d.radius)
-                    .attr('cx', d => d.x)
-                    .attr('cy', d => d.y)
+    d3.select('svg')
+        .selectAll('circle')
+        .data(nodes)
+        .join('circle')
+            .attr('fill', (_, i) => `${colour(i)}`)
+            .attr('r', d => d.radius)
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y)
 }

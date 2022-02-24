@@ -22,24 +22,26 @@ const nodes = d3.range(numNodes)
                     return {radius: Math.random() * 25}
                 })
  
-const simulation = d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody().strength(5))
-                    .force('center', d3.forceCenter(width / 2, height / 2))
-                    .force('collision', d3.forceCollide().radius(function(d) {
-                                                                    return d.radius
-                                                                }))
-                    .on('tick', ticked);
+// Define d3 simulations with different types of forces.
+d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(5))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(function(d) {
+                                                    return d.radius
+                                                }))
+    .on('tick', ticked);
 
 // Colour Scheme.
 const colour = d3.scaleOrdinal().range(d3.schemePaired);
 
+// tick function.
 function ticked() {
-    const u = d3.select('svg')
-                .selectAll('circle')
-                .data(nodes)
-                .join('circle')
-                    .attr('fill', (_, i) => `${colour(i)}`)
-                    .attr('r', d => d.radius)
-                    .attr('cx', d => d.x)
-                    .attr('cy', d => d.y)
+    d3.select('svg')
+        .selectAll('circle')
+        .data(nodes)
+        .join('circle')
+            .attr('fill', (_, i) => `${colour(i)}`)
+            .attr('r', d => d.radius)
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y)
 }
