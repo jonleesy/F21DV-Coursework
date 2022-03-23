@@ -10,7 +10,7 @@ var app = express();
 var server = http.createServer(app);
 
 // the app responds with index.html
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 

@@ -1,0 +1,12 @@
+display,value
+New Cases,new_cases
+Total Cases,total_cases
+New Cases Smoothed,new_cases_smoothed
+Total Deaths,total_deaths
+New Deaths,new_deaths
+New Deaths Smoothed,new_deaths_smoothed
+New Cases Per Million,new_cases_per_million
+New Cases Smoothed Per Million,new_cases_smoothed_per_million
+New Vaccinations,new_vaccinations
+New Vaccination Smoothed,new_people_vaccinated_smoothed
+Fully Vaccinated,people_fully_vaccinated
