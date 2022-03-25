@@ -90,7 +90,7 @@ Promise.all(dataMap).then(topo => {
                                         mapHeight / 2]);
 
     // Mouse over function.
-    const mouseOver = (_, d) => {
+    function mouseOver(_, d) {
         const newTolltipData = dataCase.find(data => data[0] == d.id);
         const newCountry = newTolltipData[2];
         const newCasesPerMil = newTolltipData[1];
@@ -120,7 +120,7 @@ Promise.all(dataMap).then(topo => {
     }
 
     // Mouse Leave Function.
-    const mouseLeave = () => {
+    function mouseLeave() {
         // Unblur Everything
         d3.selectAll('.map')
             .transition()
@@ -144,7 +144,7 @@ Promise.all(dataMap).then(topo => {
     }
 
     // onClick function for each country.
-    const click = async function(_, d) {
+    async function click(_, d) {
 
         // Get the country id.
         countryConst = d.id;
