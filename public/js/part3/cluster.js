@@ -60,7 +60,7 @@ export function clusterGraph(selector, w, h, data) {
     svg.append('text')
             .attr('transform', `translate(${-margin.left * 1.2}, ${height/2 + margin.bottom}) rotate(-90)`)
             .style('font-size', '12px')
-            .text('GDP Per Capita')
+            .text('GDP Per Capita (\$)')
     svg.append('text')
             .attr('transform', `translate(${width / 2 - margin.left}, ${height + margin.bottom})`)
             .style('font-size', '12px')

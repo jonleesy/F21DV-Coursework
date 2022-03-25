@@ -3,6 +3,7 @@ import { createDivs } from './functions.js';
 import { mapData, getLatestCase, round2Decimal, getCountryData } from './data.js';
 import { plotGraph1, updateGraph } from './graph.js'
 import { clusterGraph } from './cluster.js'
+import { populateOthersDiv } from './others.js'
 
 // Add the center grid container.
 d3.select('body')
@@ -16,8 +17,10 @@ createDivs('grid-container', 'map-container');
 createDivs('grid-container', 'cluster-container');
 // Bottom Left Panel,
 createDivs('grid-container', 'graph-container', 'graph1');
-// Botto Right Panel.
+// Bottom Middle Panel.
 createDivs('grid-container', 'graph-container', 'graph2');
+// Bottom Right Panel.
+createDivs('grid-container', 'graph-container', 'others-container');
 
 // Datas.
 const dataMap = await mapData();
@@ -34,6 +37,8 @@ let countryConst = 'OWID_WRL';
 let countryNameConst = 'World';
 // Options Data.
 const optionsData = await d3.csv('../../data/part3/variable.csv');
+// Global Variable for zoom
+// window.zoomConst = 100;
 
 // Dashboard constants.
 const transitionDuration = 200;
@@ -75,7 +80,6 @@ Promise.all(dataMap).then(function(topo) {
     // Use a projection to convert 'Coordinates' to 'pixels'.
     const mapProjection = d3.geoEqualEarth()
                             .scale(projectionScale)
-                            // .fitSize([mapWidth, mapHeight], geoData)
                             // Adjust for translated top-margin in svg.
                             .center([0, mapMargin.top])
                             // Adjust for translated left-margin in svg.
@@ -84,24 +88,10 @@ Promise.all(dataMap).then(function(topo) {
 
     // Mouse over function.
     const mouseOver = function(_, d) {
-
-        console.log(d)
-
-        // if (d == '') {
-        //     // New Data.
-        //     const newTolltipData = 'no data';
-        //     const newCountry = 'no data';
-        //     const newCasesPerMil = 'no data';
-        //     const newCases = 'no data';
-        // } else {
-            // New Data.
-            const newTolltipData = dataCase.find(data => data[0] == d.id);
-            const newCountry = newTolltipData[2];
-            const newCasesPerMil = newTolltipData[1];
-            const newCases = newTolltipData[3];
-        // }
-
-        
+        const newTolltipData = dataCase.find(data => data[0] == d.id);
+        const newCountry = newTolltipData[2];
+        const newCasesPerMil = newTolltipData[1];
+        const newCases = newTolltipData[3];
 
         // Blur the rest
         d3.selectAll('.map')
@@ -190,16 +180,6 @@ Promise.all(dataMap).then(function(topo) {
             .on('mouseover', mouseOver)
             .on('mouseleave', mouseLeave)
             .on('click', click)
-
-
-    // const temp = [[[114.204017,4.525874],[114.599961,4.900011],[115.45071,5.44773],[115.4057,4.955228],[115.347461,4.316636],[114.869557,4.348314],[114.659596,4.007637],[114.204017,4.525874]]]
-    // const feature = turf.polygon(topo[0].features[175].geometry.coordinates[0])
-    // console.log(topo[0].features[0].geometry.coordinates)
-    // console.log(topo[0].features[175].geometry.coordinates)
-    
-    // console.log(topo[0].features[0].geometry.coordinates)
-    // console.log(mapProjection((turf.centerOfMass(feature).geometry.coordinates))[0])
-    // console.log(mapProjection((turf.centerOfMass(feature).geometry.coordinates))[1])
     
     // Plot the circles
     mapSvg.append('g')
@@ -218,7 +198,6 @@ Promise.all(dataMap).then(function(topo) {
                     // Return the colours.
                     return circleScale(parseFloat(total));
                 })
-
                 .attr('transform', d => {
                     try {
                         const coor = d.geometry.coordinates;
@@ -231,7 +210,6 @@ Promise.all(dataMap).then(function(topo) {
                         }
                         return `translate(${translateCoor[0]},${translateCoor[1]})`;
                     } catch (error) {
-                        // console.log(d, error)
                     }
                 })
                 .style('fill', d => {
@@ -242,7 +220,6 @@ Promise.all(dataMap).then(function(topo) {
                     if (total == 'no data') {
                         total = 0;
                     }
-                    // console.log(mapColourScale(parseFloat(total)))
                     // Return the colours.
                     return mapColourScale(parseFloat(total));
                 })
@@ -312,12 +289,13 @@ addToolTipRect(tooltipRectHeight * 4, worldNewCases, 'tooltip-new-cases');
 
 // ::::::::::::::::::::::::::::::
 // Starting the graphs
+window.worldData = await getCountryData('OWID_WRL')
 // Add the first graph for graph1.
-plotGraph1(await getCountryData('OWID_WRL'), typeConst, 'graph1')
-updateGraph(await getCountryData('OWID_WRL'), typeConst, 'graph1')
+plotGraph1(worldData, typeConst, 'graph1')
+updateGraph(worldData, typeConst, 'graph1')
 // Add the first graph for graph2.
-plotGraph1(await getCountryData('OWID_WRL'), typeConst2, 'graph2')
-updateGraph(await getCountryData('OWID_WRL'), typeConst2, 'graph2')
+plotGraph1(worldData, typeConst2, 'graph2')
+updateGraph(worldData, typeConst2, 'graph2')
 
 function addOptions(selector) {
     // Add a dropdown menu
@@ -336,7 +314,18 @@ function addOptions(selector) {
                     .append('option')
                     .text(d => d.display)
                     .attr('value', d => d.value)
-                    .property('selected', function(d) {
+                    .attr('id', (d) => {
+                        if (selector == 'graph1') {
+                            if (d.value == typeConst) {
+                                return `${selector}-default-option`;
+                            }
+                        } else {
+                            if (d.value == typeConst2) {
+                                return `${selector}-default-option`;
+                            }
+                        }
+                    })
+                    .property('selected', (d) => {
                         if (selector == 'graph1') {
                             if (d.value == typeConst) {
                                 return 'selected'
@@ -360,12 +349,12 @@ function addOptions(selector) {
         })
 }
 
+/// Add dropdown options for graph.
 addOptions('graph1');
 addOptions('graph2');
 
+// Add graph that shows cluster.
 clusterGraph('cluster-container', 400, 400, dataCase)
 
-// d3.select('.cluster-container')
-//     .append('svg')
-//     .attr('width', 400)
-//     .attr('height', 400)
+// Populate the bottom right div
+populateOthersDiv()

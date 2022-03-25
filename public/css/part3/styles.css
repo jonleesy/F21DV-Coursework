@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(226, 238, 240);
+    background-color: #e2eef0;
     align-self: center;
 }
 
@@ -63,4 +63,23 @@ header {
 
 .graph-container > span {
     margin-left: 20px;
+}
+
+#others-container {
+    padding: 20px 20px;
+}
+
+#others-container > div {
+    position: relative;
+    margin-top: 10px;
+    border: 2px solid #e2eef0;
+}
+
+button {
+    display: block;
+    text-align: center;
+    padding: 12px 32px;
+    transition-duration: 0.1s;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
 }

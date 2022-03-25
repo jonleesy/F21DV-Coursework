@@ -6,12 +6,10 @@ const yesterday = (function() {
 const yesterdayDate = '2022-03-14'
 
 // Global Variables
-// const geojson = 'https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson';
 // const covidDataCsv = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv';
-// Local storage for faster read.
+// Local storage for faster read. Also something with static data.
 const geojson = '../../data/part3/geojson.json';
 const covidDataCsv = '../../data/part3/covid.csv';
-// const variablesCsv = '../../data/part3/variable.csv';
 const data = await d3.csv(covidDataCsv);
 
 /**
