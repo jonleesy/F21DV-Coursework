@@ -144,7 +144,7 @@ Promise.all(dataMap).then(topo => {
     }
 
     // onClick function for each country.
-    const click = async (_, d) => {
+    const click = async function(_, d) {
 
         // Get the country id.
         countryConst = d.id;
@@ -368,7 +368,7 @@ const addOptions = (selector) => {
 
     // Process on-change event
     d3.select(`#select-button-${selector}`)
-        .on('change', async () => {
+        .on('change', async function() {
             if (selector == 'graph1') {
                 typeConst = d3.select(this).property('value');
                 updateGraph(await getCountryData(countryConst), typeConst, `${selector}`)
