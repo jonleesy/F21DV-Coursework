@@ -25,7 +25,7 @@ header {
 }
 
 .cluster-container {
-    grid-column: 3 / 4;
+    grid-column: 3 / 3;
     border: 2px solid #000000;
     border-radius: 25px;
 }

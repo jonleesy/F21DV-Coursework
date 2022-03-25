@@ -1,9 +1,9 @@
 // Functions import.
 import { createDivs } from './functions.js';
 import { mapData, getLatestCase, round2Decimal, getCountryData } from './data.js';
-import { plotGraph1, updateGraph } from './graph.js'
-import { clusterGraph } from './cluster.js'
-import { populateOthersDiv } from './others.js'
+import { plotGraph1, updateGraph } from './graph.js';
+import { clusterGraph } from './cluster.js';
+import { populateOthersDiv } from './others.js';
 
 // Add the center grid container.
 d3.select('body')
@@ -25,9 +25,11 @@ createDivs('grid-container', 'graph-container', 'others-container');
 // Datas.
 const dataMap = await mapData();
 const dataCase = await getLatestCase();
+
 // Process outlier.
 const dataCasePerMilFloat = dataCase.map(v => parseFloat(v[1]));
 const latestCaseMax = d3.quantile(dataCasePerMilFloat, 0.9);
+
 // World Data.
 const worldLatest = dataCase.find(v => v[0] == 'OWID_WRL');
 const worldCasesPerMil = worldLatest[1];
@@ -35,10 +37,9 @@ const worldNewCases = worldLatest[3];
 let typeConst = 'new_cases', typeConst2 = 'new_cases_smoothed';
 let countryConst = 'OWID_WRL';
 let countryNameConst = 'World';
-// Options Data.
+
+// Options Data. To populate dorpdown options
 const optionsData = await d3.csv('../../data/part3/variable.csv');
-// Global Variable for zoom
-// window.zoomConst = 100;
 
 // Dashboard constants.
 const transitionDuration = 200;
@@ -70,12 +71,14 @@ const mapDomain = [0, latestCaseMax];
 const mapColourScale = d3.scaleSequential()
                             .domain(mapDomain)
                             .interpolator(d3.interpolateYlOrRd);
+
+// For circles on the map – scale.
 const circleScale = d3.scaleLinear()
                             .domain(mapDomain)
                             .range([1, 5]);
 
 // Draw the map;
-Promise.all(dataMap).then(function(topo) {
+Promise.all(dataMap).then(topo => {
 
     // Use a projection to convert 'Coordinates' to 'pixels'.
     const mapProjection = d3.geoEqualEarth()
@@ -87,7 +90,7 @@ Promise.all(dataMap).then(function(topo) {
                                         mapHeight / 2]);
 
     // Mouse over function.
-    const mouseOver = function(_, d) {
+    const mouseOver = (_, d) => {
         const newTolltipData = dataCase.find(data => data[0] == d.id);
         const newCountry = newTolltipData[2];
         const newCasesPerMil = newTolltipData[1];
@@ -117,7 +120,7 @@ Promise.all(dataMap).then(function(topo) {
     }
 
     // Mouse Leave Function.
-    const mouseLeave = function(_) {
+    const mouseLeave = () => {
         // Unblur Everything
         d3.selectAll('.map')
             .transition()
@@ -140,12 +143,23 @@ Promise.all(dataMap).then(function(topo) {
             .text(worldNewCases)
     }
 
-    const click = async function(_, d) {
+    // onClick function for each country.
+    const click = async (_, d) => {
+
+        // Get the country id.
         countryConst = d.id;
+
+        // Get the data for this country.
         const thisdata = await getCountryData(d.id);
-        countryNameConst = thisdata.find(k => k.location)
+
+        // Filter to get country's name, to update name div.
+        countryNameConst = thisdata.find(k => k.location);
+
+        // Update the graphs.
         updateGraph(thisdata, typeConst, 'graph1');
         updateGraph(thisdata, typeConst2, 'graph2');
+
+        // Check and show if no data.
         if (thisdata.length == 0) {
             d3.selectAll('.graph-container span')
                 .text(`${d.properties['name']} **No Data`);
@@ -163,17 +177,20 @@ Promise.all(dataMap).then(function(topo) {
                 .append("path")
                 .attr('d', d3.geoPath().projection(mapProjection))
                 // fill colours
-                .attr('fill', (d) => {
-                                        // Use data's id to match and find the number of cases
-                                        let cases = dataCase.find(data => data[0] == d.id);
-                                        // Process NaN
-                                        let total = cases ? cases[1] : 0;
-                                        if (total == 'no data') {
-                                            total = 0;
-                                        }
-                                        // Return the colours.
-                                        return mapColourScale(parseFloat(total));
-                                    })
+                .attr('fill', d => {
+
+                    // Use data's id to match and find the number of cases
+                    let cases = dataCase.find(data => data[0] == d.id);
+
+                    // Process NaN
+                    let total = cases ? cases[1] : 0;
+                    if (total == 'no data') {
+                        total = 0;
+                    }
+
+                    // Return the colours.
+                    return mapColourScale(parseFloat(total));
+                })
                 .attr('stroke', 'black')
                 .attr('stroke-width', '0.5px')
                 .attr('class', 'map')
@@ -188,13 +205,16 @@ Promise.all(dataMap).then(function(topo) {
             .enter()
                 .append('circle')
                 .attr('r', d => {
+                    
                     // Use data's id to match and find the number of cases
                     let cases = dataCase.find(data => data[0] == d.id);
+
                     // Process NaN
                     let total = cases ? cases[1] : 0;
                     if (total == 'no data') {
                         total = 0;
                     }
+                    
                     // Return the colours.
                     return circleScale(parseFloat(total));
                 })
@@ -213,13 +233,16 @@ Promise.all(dataMap).then(function(topo) {
                     }
                 })
                 .style('fill', d => {
+
                     // Use data's id to match and find the number of cases
                     let cases = dataCase.find(data => data[0] == d.id);
+
                     // Process NaN
                     let total = cases ? cases[1] : 0;
                     if (total == 'no data') {
                         total = 0;
                     }
+
                     // Return the colours.
                     return mapColourScale(parseFloat(total));
                 })
@@ -267,7 +290,7 @@ const mapTooltip = mapSvg.append('g')
                         .attr('class', 'tooltip')
                         .attr('transform', `translate(${mapWidth - 110}, ${mapMargin.top*2})`);
 
-function addToolTipRect(translateY, text, className = '') {
+const addToolTipRect = (translateY, text, className = '') => {
     mapTooltip.append('rect')
                 .attr('fill', 'white')
                 .attr('opacity', 0.5)
@@ -289,24 +312,30 @@ addToolTipRect(tooltipRectHeight * 4, worldNewCases, 'tooltip-new-cases');
 
 // ::::::::::::::::::::::::::::::
 // Starting the graphs
-window.worldData = await getCountryData('OWID_WRL')
-// Add the first graph for graph1.
-plotGraph1(worldData, typeConst, 'graph1')
-updateGraph(worldData, typeConst, 'graph1')
-// Add the first graph for graph2.
-plotGraph1(worldData, typeConst2, 'graph2')
-updateGraph(worldData, typeConst2, 'graph2')
+window.worldData = await getCountryData('OWID_WRL');
 
-function addOptions(selector) {
+// Add the first graph for graph1.
+plotGraph1(worldData, typeConst, 'graph1');
+updateGraph(worldData, typeConst, 'graph1');
+
+// Add the first graph for graph2.
+plotGraph1(worldData, typeConst2, 'graph2');
+updateGraph(worldData, typeConst2, 'graph2');
+
+// Add a dropdown option for each graph
+const addOptions = (selector) => {
+    
     // Add a dropdown menu
     const optionsDiv1 = d3.select(`#${selector}`)
                         .append('select')
                             .attr('id', `select-button-${selector}`)
+
     // Add a span that shows country name.                        
     d3.select(`#${selector}`)
         .append('span')
         .attr('id', `${selector}-text`)
         .text(countryNameConst);
+
     // Populate Options
     optionsDiv1.selectAll(`.${selector} myOptions`)
                 .data(optionsData)
@@ -336,9 +365,10 @@ function addOptions(selector) {
                             }
                         }
                     })
+
     // Process on-change event
     d3.select(`#select-button-${selector}`)
-        .on('change', async function() {
+        .on('change', async () => {
             if (selector == 'graph1') {
                 typeConst = d3.select(this).property('value');
                 updateGraph(await getCountryData(countryConst), typeConst, `${selector}`)
@@ -354,7 +384,7 @@ addOptions('graph1');
 addOptions('graph2');
 
 // Add graph that shows cluster.
-clusterGraph('cluster-container', 400, 400, dataCase)
+clusterGraph('cluster-container', 400, 400, dataCase);
 
 // Populate the bottom right div
-populateOthersDiv()
+populateOthersDiv();
