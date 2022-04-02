@@ -1,4 +1,3 @@
-// Plotting Graph 1
 // Graph Constants
 const graph1margin = 60,
         buttonsMargin = 100,

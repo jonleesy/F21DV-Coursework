@@ -33,7 +33,7 @@ const latestCaseMax = d3.quantile(dataCasePerMilFloat, 0.9);
 // World Data.
 const worldLatest = dataCase.find(v => v[0] == 'OWID_WRL');
 const worldCasesPerMil = worldLatest[1];
-const worldNewCases = worldLatest[3];
+const worldNewCases = parseInt(worldLatest[3]);
 let typeConst = 'new_cases', typeConst2 = 'new_cases_smoothed';
 let countryConst = 'OWID_WRL';
 let countryNameConst = 'World';
@@ -94,7 +94,7 @@ Promise.all(dataMap).then(topo => {
         const newTolltipData = dataCase.find(data => data[0] == d.id);
         const newCountry = newTolltipData[2];
         const newCasesPerMil = newTolltipData[1];
-        const newCases = newTolltipData[3];
+        const newCases = parseInt(newTolltipData[3]);
 
         // Blur the rest
         d3.selectAll('.map')
@@ -103,7 +103,7 @@ Promise.all(dataMap).then(topo => {
             .style('opacity', 0.4)
             .attr('stroke-width', '0.5px')
         
-        // Blue except the selected
+        // Blur except the selected
         d3.select(this)
             .transition()
             .duration(transitionDuration)
@@ -290,6 +290,7 @@ const mapTooltip = mapSvg.append('g')
                         .attr('class', 'tooltip')
                         .attr('transform', `translate(${mapWidth - 110}, ${mapMargin.top*2})`);
 
+// Generalised function to add sections to the tooltip.
 const addToolTipRect = (translateY, text, className = '') => {
     mapTooltip.append('rect')
                 .attr('fill', 'white')
