@@ -19,8 +19,7 @@ export async function setup() {
     addDiv('.main-container', 'main-container-div', 'map-container');
     addDiv('.main-container', 'main-container-div', 'top-right-container');
     addDiv('.main-container', 'main-container-div', 'bottom-right-container');
-
-
+    addDiv('.grid-container', 'year-container');
 
     // add footer
     await d3.text('../../data/part4/footer.txt').then((d) => {
