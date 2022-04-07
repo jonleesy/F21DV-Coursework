@@ -26,3 +26,18 @@ export async function getGDPData() {
 export async function getPopulationData() {
     return wdiData.filter(d => d['Indicator Code'] === codes.population);
 }
+
+export async function getListOfCountry() {
+    // get an array of country code
+    const countryCode = (await getHDIData()).map(d => d.Code);
+    const uniqueCode = new Array();
+
+    // look for unique items only
+    for (let item of countryCode) {
+        if (!uniqueCode.includes(item)) {
+            uniqueCode.push(item);
+        }
+    }
+
+    return uniqueCode;
+}

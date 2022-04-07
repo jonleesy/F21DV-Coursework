@@ -1,8 +1,13 @@
 // local imports
-import { getGeoJson, getHDIData } from './data.js';
+import { getGeoJson, getHDIData, getGDPData, getPopulationData } from './data.js';
+import { selectThisLine } from './line.js';
+import { blurAllScatter, addText } from './scatter.js';
 
 // global varianles
 window.year = 2017;
+
+const gdpData = await getGDPData();
+const populationData = await getPopulationData();
 
 // local variables
 let map;
@@ -48,13 +53,34 @@ function mouseOver(e) {
     })
 
     // filter for data
-    const countryData = hdiData.find(d => d.Code == countryid);
+    const countryData = hdiData.find(d => d.Code == countryid && d.Year == window.year);
     const countryName = (target.feature.properties.name) ? target.feature.properties.name : 'no data';
     const countryVal = (countryData) ? parseFloat(countryData.hdi) : 'no data';
 
     // update tooltip
     updateTooltip(countryName, countryVal);
+
+    // process scatter
+    blurAllScatter();
     
+    // select specific scatter
+    d3.select(`#scatter-${countryid}`)
+        .attr('opacity', 1.0);
+
+    // constants
+    const gdpCountry = gdpData.find(g => g['Country Code'] == countryid);
+    const gdpVal = gdpCountry ? gdpCountry[window.year] : 'no data';
+    const populationDensity = (populationData.find(p => p['Country Code'] == countryid)) ? populationData.find(p => p['Country Code'] == countryid)[[window.year]] : 'no data';
+
+    // add text back to scatter
+    const selected = d3.select('#top-right-container svg g')
+    addText(selected, countryName, 1);
+    addText(selected, `GDP/Capita: ${(Math.round(gdpVal)) ? Math.round(gdpVal * 1000) / 1000 : 'no data'}`, 2);
+    addText(selected, `HDI: ${countryVal}`, 3);
+    addText(selected, `Population Density: ${(Math.round(populationDensity)) ? Math.round(populationDensity * 1000) / 1000 : 'no data'}`, 4);
+
+    // process lines
+    selectThisLine(countryid);
 }
 
 /**
@@ -66,11 +92,25 @@ function mouseLeave(e) {
 
     // unstyle the selection
     target.setStyle({
-        fillOpacity:0.7,
+        fillOpacity: 0.6,
     })
 
     // update tooltip
     updateTooltip('World', averageHdi);
+
+    // unblur scatter
+    d3.selectAll('.scatter-circle')
+        .attr('opacity', 0.6);
+
+    // remove scatter tooltip
+    d3.selectAll('.scatter-temp-text')
+        .remove();
+
+    // revert line
+    d3.selectAll(`.hdi-line`)
+        .attr('stroke', 'rgb(222, 222, 222')
+        .attr('stroke-width', '1px')
+        .attr('opacity', 0.1);
 }
 
 /**
@@ -99,7 +139,7 @@ export async function updateMap() {
 
             // Return styling
             return {
-                color: colour, weight: 0.5, fillOpacity: 0.7
+                color: colour, weight: 0.5, fillOpacity: 0.6, className: `map-path-${countryCode}`
             };
         }
         });

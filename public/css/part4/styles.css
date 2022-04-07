@@ -11,7 +11,7 @@ header {
 }
 
 /* font should be white against dark bg */
-p, a {
+p, a, text, line, path {
     color: #e2eef0;
 }
 
@@ -34,7 +34,7 @@ p, a {
 
 /* style for all the divs in the main-container */
 .main-container-div {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(77, 77, 77);
     border-radius: 25px;
 }
 
@@ -69,7 +69,7 @@ p, a {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
-    background: rgb(182, 182, 182);
+    background: rgb(222, 222, 222);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }

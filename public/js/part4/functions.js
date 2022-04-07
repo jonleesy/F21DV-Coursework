@@ -1,3 +1,6 @@
+import { updateMap } from "./map.js";
+import { updateScatter } from "./scatter.js";
+
 /**
  * Function adds a div systematically to an existing div
  * @param {*} targetClass div's class where div is being added to
@@ -29,4 +32,8 @@ export async function setup() {
     })
 }
 
-
+export function updateDashboard(newYear) {
+    window.year = newYear;
+    updateScatter();
+    updateMap();
+}

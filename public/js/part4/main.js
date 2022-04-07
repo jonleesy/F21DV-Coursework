@@ -2,6 +2,7 @@ import { setup } from './functions.js';
 import { setupLine } from './line.js';
 import { setupMap } from './map.js';
 import { setupScatter } from './scatter.js';
+import { setupSlider } from './slider.js';
 
 // set up the divs systematically
 setup();
@@ -12,3 +13,6 @@ await setupMap();
 // set up the plots
 await setupScatter();
 await setupLine();
+
+// setup slider
+await setupSlider();
