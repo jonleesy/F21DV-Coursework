@@ -10,16 +10,19 @@ header {
     font-weight: 900;
 }
 
+/* font should be white against dark bg */
 p, a {
     color: #e2eef0;
 }
 
+/* container to ensure ther is space on the side */
 .grid-container {
     display: grid;
     grid-template-columns: auto 1200px auto;
     grid-template-rows: auto auto;
 }
 
+/* div where all the things happen */
 .main-container {
     display: grid;
     grid-area: 1 / 2 / 2 / 3;
@@ -29,8 +32,9 @@ p, a {
     grid-gap: 20px;
 }
 
+/* style for all the divs in the main-container */
 .main-container-div {
-    background-color: rgb(74, 74, 74);
+    background-color: rgb(255, 255, 255);
     border-radius: 25px;
 }
 
@@ -50,6 +54,7 @@ p, a {
     width: 500px;
 }
 
+/* container that shows content on scroll */
 .content-container {
     grid-area: 3 / 2 / 4 / 3;
 }
@@ -57,4 +62,27 @@ p, a {
 .footer-container {
     grid-area: 4 / 2 / 5 / 3;
     margin: 5px;
+}
+
+/* styles for map's legend */
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgb(182, 182, 182);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.legend {
+    background-color: “black”;
+    line-height: 25px;
+    color: rgb(0, 0, 0);
+    width: auto;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
 }

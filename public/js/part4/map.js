@@ -1,11 +1,113 @@
 // local imports
 import { getGeoJson, getHDIData } from './data.js';
 
+// global varianles
+window.year = 2017;
+
 // local variables
 let map;
 let dataLayer;
-let geoJsonData;
-let hdiData;
+let hdiValues;
+let averageHdi;
+
+// call datasets
+let geoJsonData = await getGeoJson();
+let hdiData = await getHDIData();
+
+// colour scale
+const mapColourScale = d3.scaleSequential()
+                        .domain(d3.extent(hdiData.map(d => d.hdi)))
+                        .interpolator(d3.interpolateYlOrRd);
+
+/**
+ * function updates the tooltip
+ * @param {*} name name of country
+ * @param {*} value hdi value of country
+ */
+function updateTooltip(name, value) {
+    // rename tooltip name
+    d3.select('#tooltip-name')
+        .html(`${name}<br>`);
+
+    // rename tooltip value
+    d3.select('#tooltip-value')
+        .html(() => (typeof value == 'string') ? 'no data' : Math.round(value * 1000) / 1000);
+}
+
+/**
+ * function controls mouseover action
+ * @param {*} e event
+ */                        
+function mouseOver(e) {
+    const { target } = e;
+    const countryid = target.feature.id;
+
+    // highlight the country
+    target.setStyle({
+        fillOpacity: 1.0,
+    })
+
+    // filter for data
+    const countryData = hdiData.find(d => d.Code == countryid);
+    const countryName = (target.feature.properties.name) ? target.feature.properties.name : 'no data';
+    const countryVal = (countryData) ? parseFloat(countryData.hdi) : 'no data';
+
+    // update tooltip
+    updateTooltip(countryName, countryVal);
+    
+}
+
+/**
+ * function controls mouseleave action
+ * @param {*} e event
+ */         
+function mouseLeave(e) {
+    const { target } = e;
+
+    // unstyle the selection
+    target.setStyle({
+        fillOpacity:0.7,
+    })
+
+    // update tooltip
+    updateTooltip('World', averageHdi);
+}
+
+/**
+ * function updates the map
+ */
+export async function updateMap() {
+    // HDI values for the year
+    hdiValues = hdiData.filter(d => d.Year == window.year);
+
+    // add mapjson layer
+    dataLayer = L.geoJson(geoJsonData, {
+        onEachFeature: (_, L) => {
+            L.on({
+                // click: onClick,
+                mouseover: mouseOver,
+                mouseout: mouseLeave
+            })
+        },
+        style: f => {
+            // use the layer's country code to filter for data
+            const countryCode = f.id;
+            const countryLatestHdi = hdiValues.find(d => d.Code == countryCode);
+
+            // 'undefined' check
+            const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
+
+            // Return styling
+            return {
+                color: colour, weight: 0.5, fillOpacity: 0.7
+            };
+        }
+        });
+    dataLayer.addTo(map);
+
+    // add bounds
+    map.setMaxBounds(dataLayer.getBounds());
+}
 
 /**
  * Function would set up and draw the map
@@ -25,44 +127,91 @@ export async function setupMap() {
         maxBoundsViscosity: 0.5,
     });
 
-    // call datasets
-    geoJsonData = await getGeoJson();
-    hdiData = await getHDIData();
-    const latestHDI = hdiData.filter(d => d.Year == 2017);
+    // update map
+    updateMap();
 
-    // colour scale
-    const mapColourScale = d3.scaleSequential()
-                            .domain(d3.extent(latestHDI.map(d => d.hdi)))
-                            .interpolator(d3.interpolateYlOrRd);
+    // define the legend
+    const legend = L.control({position: 'topright'});
 
-    // add mapjson layer
-    dataLayer = L.geoJson(geoJsonData, {
-        onEachFeature: (f, L) => {
-            L.on({
-                // click: onclick,
-                mouseover: mouseOver,
-                // mouseout: mouseLeave
-            })
+    // define the legend
+    legend.onAdd = () => {
+        // create the legend div
+        const div = L.DomUtil.create('div', 'info legend');
+
+        // index: only between 0.0 - 1.0
+        const legendData = [0, 0.2, 0.4, 0.6, 0.8, 1.0];
+        const lengendLabels = [` ${legendData[0]} - ${legendData[1]} `,
+                                ` ${legendData[1]} - ${legendData[2]} `,
+                                ` ${legendData[2]} - ${legendData[3]} `,
+                                ` ${legendData[3]} - ${legendData[4]} `,
+                                ` ${legendData[4]} ++ `];
+
+        // add the title
+        d3.select(div)
+            .append('span')
+                .html('<strong>HDI</strong> <br>')
+
+        // add the legend
+        for (let i = 0; i < lengendLabels.length; i++) {
+            const selected = d3.select(div);
+
+            // add the color box
+            selected.append('i')
+                .style('background', mapColourScale(legendData[i]));
+
+            // add the label
+            d3.select(div)
+                .append('span')
+                    .html(() => {
+                        const msg = (i == legendData - 1) ? '' : '<br>';
+                        return `${lengendLabels[i]} ${msg}`;
+                    })
         }
-        ,
-        style: f => {
-            // use the layer's country code to filter for data
-            const countryCode = f.properties.ADM0_A3;
-            const countryLatestHdi = latestHDI.find(d => d.Code == countryCode);
-            
-            // 'undefined' check
-            const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
-            
-            // Return styling
-            return {
-                color: colour, weight: 0.5, fillOpacity: 0.8
-            };
-        }
-    })
-    dataLayer.addTo(map);
 
-    // add bounds
-    map.setMaxBounds(dataLayer.getBounds());
+        return div;
+    }
+
+    // add legend to map
+    legend.addTo(map);
+
+    // add tooltip
+    const tooltip = L.control({position: 'bottomleft'});
+
+    // define the tooltip
+    tooltip.onAdd = () => {
+        const div = L.DomUtil.create('div', 'info');
+
+        // add the title
+        d3.select(div)
+            .append('span')
+                .html('<strong>Human Development Index (HDI)</strong><br>')
+
+        // add the name
+        d3.select(div)
+            .append('span')
+                .attr('id', 'tooltip-name')
+                .html('World<br>')
+
+        // calculate average hdi
+        const hdiValueArr = hdiValues.map(d => d.hdi);
+        let sumHdi = 0;
+        for (let item of hdiValueArr) {
+            sumHdi = sumHdi + parseFloat(item);
+        }
+        
+        averageHdi = Math.round((sumHdi / hdiValueArr.length) * 1000) / 1000;
+        
+        // add the number
+        d3.select(div)
+            .append('span')
+                .attr('id', 'tooltip-value')
+                .html(`${averageHdi}`);
+
+        return div;
+    }
+
+    // add the tooltip
+    tooltip.addTo(map);
     
     // add attributes for map
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
