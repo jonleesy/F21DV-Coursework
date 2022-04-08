@@ -23,11 +23,15 @@ export async function setup() {
     addDiv('.main-container', 'main-container-div', 'top-right-container');
     addDiv('.main-container', 'main-container-div', 'bottom-right-container');
     addDiv('.main-container', 'year-container');
+    addDiv('.main-container', 'content-container');
+    addDiv('.main-container', 'footer-container');
 
     // add footer
     await d3.text('../../data/part4/footer.txt').then((d) => {
         addDiv('.grid-container', 'footer-container', '');
         d3.select('.footer-container')
+            .append('p')
+            .append('em')
             .text(d);
     })
 }

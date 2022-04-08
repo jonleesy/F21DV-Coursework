@@ -6,6 +6,7 @@ let scatterSvg;
 let plotWidth;
 let plotHeight;
 let colorScale;
+let colorPopScale;
 let circleScale;
 let margin;
 const hdiData = await getHDIData();
@@ -15,7 +16,7 @@ const populationData = await getPopulationData();
 /**
  * funcitons sets up the scatter plot
  */
-export async function setupScatter() {
+export async function setupScatter(selector) {
     // plot constants
     const width = 500;
     const height = 360;
@@ -29,7 +30,7 @@ export async function setupScatter() {
     plotHeight = height - margin.top - margin.bottom;
 
     // add the svg
-    scatterSvg = d3.select('#top-right-container')
+    scatterSvg = d3.select(`#${selector}`)
                     .append('svg')
                         .attr('width', plotWidth + margin.left + margin.right)
                         .attr('height', plotHeight + margin.top+ margin.bottom)
@@ -94,11 +95,14 @@ export async function updateScatter() {
     circleScale = d3.scaleLinear()
                         .domain([0, 1000])
                         .range([2, 5]);
+    colorPopScale = d3.scaleSequential()
+                        .domain([0, 1000])
+                        .interpolator(d3.interpolateYlOrRd);
 
     // re-call the axes.
     d3.selectAll('.scatter-bottom-axes')
         .transition()
-            .duration(400)
+            .duration(1000)
             .ease(d3.easeLinear)
             .call(d3.axisBottom(horScale))
             .selectAll('text')
@@ -107,7 +111,7 @@ export async function updateScatter() {
                 .style('text-anchor', 'end');
     d3.selectAll('.scatter-left-axes')
         .transition()
-            .duration(400)
+            .duration(1000)
             .ease(d3.easeLinear)
             .call(d3.axisLeft(verScale));
 
@@ -186,7 +190,10 @@ export async function updateScatter() {
 
                     return (gdpVal && hdiVal) ? `translate(${horScale(gdpVal)}, ${verScale(hdiVal)})` : `scale(0)`;
                 })
-                .style('fill', d => colorScale(d.hdi))
+                .style('fill', d => {
+                    const populationDensity = populationData.find(p => p['Country Code'] == d.Code);
+                    return (populationDensity[window.year]) ? colorPopScale(populationDensity[parseFloat(window.year)]) : 0;
+                })
                 .attr('opacity', 0.6)
                 .attr('stroke', d => colorScale(d.hdi))
                 .attr('stroke-width', '0.3px')

@@ -1,3 +1,4 @@
+import { setupContent } from './content.js';
 import { setup } from './functions.js';
 import { setupLine } from './line.js';
 import { setupMap } from './map.js';
@@ -11,8 +12,11 @@ setup();
 await setupMap();
 
 // set up the plots
-await setupScatter();
+await setupScatter('top-right-container');
 await setupLine();
 
 // setup slider
 await setupSlider();
+
+// setup content
+setupContent();

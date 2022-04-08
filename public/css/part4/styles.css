@@ -11,7 +11,7 @@ header {
 }
 
 /* font should be white against dark bg */
-p, a, text, line, path {
+p, a, text, line, path, h2 {
     color: #e2eef0;
 }
 
@@ -57,17 +57,21 @@ p, a, text, line, path {
 .year-container {
     grid-area: 3 / 1 / 4 / 3;
     width: 1200px;
-    height: 100px
+    height: 100px;
 }
 
 /* container that shows content on scroll */
 .content-container {
-    grid-area: 3 / 2 / 4 / 3;
+    grid-area: 4 / 1 / 5 / 3;
+    margin-top: -50px;
 }
 
 .footer-container {
-    grid-area: 4 / 2 / 5 / 3;
-    margin: 5px;
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+.footer-container > p {
+    color: #9c9c9c;
 }
 
 /* styles for map's legend */
