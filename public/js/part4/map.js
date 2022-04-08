@@ -100,7 +100,7 @@ function mouseLeave(e) {
 
     // unblur scatter
     d3.selectAll('.scatter-circle')
-        .attr('opacity', 0.6);
+        .attr('fillOpacity', 0.6);
 
     // remove scatter tooltip
     d3.selectAll('.scatter-temp-text')
@@ -121,6 +121,7 @@ export async function updateMap() {
     hdiValues = hdiData.filter(d => d.Year == window.year);
 
     // add mapjson layer
+    dataLayer.remove();
     dataLayer = L.geoJson(geoJsonData, {
         onEachFeature: (_, L) => {
             L.on({
@@ -153,6 +154,9 @@ export async function updateMap() {
  * Function would set up and draw the map
  */
 export async function setupMap() {
+    // HDI values for the year
+    hdiValues = hdiData.filter(d => d.Year == window.year);
+
     // map constants
     const mapCenter = [30, 0];
     const mapZoom = 2;
@@ -166,6 +170,31 @@ export async function setupMap() {
         minZoom: 2,
         maxBoundsViscosity: 0.5,
     });
+
+    // add mapjson layer
+    dataLayer = L.geoJson(geoJsonData, {
+        onEachFeature: (_, L) => {
+            L.on({
+                // click: onClick,
+                mouseover: mouseOver,
+                mouseout: mouseLeave
+            })
+        },
+        style: f => {
+            // use the layer's country code to filter for data
+            const countryCode = f.id;
+            const countryLatestHdi = hdiValues.find(d => d.Code == countryCode);
+
+            // 'undefined' check
+            const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
+
+            // Return styling
+            return {
+                color: colour, weight: 0.5, fillOpacity: 0.6, className: `map-path-${countryCode}`
+            };
+        }
+        });
+    dataLayer.addTo(map);
 
     // update map
     updateMap();

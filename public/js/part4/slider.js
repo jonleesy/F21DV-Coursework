@@ -42,13 +42,17 @@ export async function setupSlider() {
                         .min(datesExtent[0])
                         .max(datesExtent[1])
                         .width(sliderWidth)
-                        // .tickFormat(d3.format('.2%'))
+                        .tickFormat(d3.format('d'))
                         .default(2017)
                         .ticks(30)
                         .step(1)
                         .on('onchange', d => {
+                            const result = (d == 1989) ? 1985 : (d == 1988) ? 1980 : Math.round(d);
                             d3.select('.slider-text')
-                                .text(Math.round(d))
+                                .text(result);
+
+                            // update the map
+                            updateDashboard(Math.round(result));
                         });
 
     // call the slider                        
@@ -57,79 +61,6 @@ export async function setupSlider() {
     // rename slider
     const ticks = d3.selectAll('.tick text');
     ticks.attr('class', (_, i) => `ticks-slider-${i}`);
-
-
-    // // slider const
-    // let moving = false;
-    // let currentValue = datesExtent[1];
-    // let timer;
-
-    // const playButton = d3.select('#play-button');
-
-    // const horScale = d3.scaleTime()
-    //                     .domain(datesExtent)
-    //                     .range([0, sliderWidth])
-    //                     .clamp(true);
-
-    // const slider = sliderSvg.append('g')
-    //                     .attr('class', 'slider')
-    //                     .attr('transform', `translate(${margin.left}, ${sliderHeight/2})`);
-
-    // slider.append('line')
-    //         .attr('class', 'tarck')
-    //         .attr('x1', horScale.range[0])
-    //         .attr('x2', horScale.range[1])
-    //         // .select(() => {return this.parentNode.appendChild(this.cloneNode(true))})
-    //         //     .attr('class', 'track-inset')
-    //         // .select(() => {return this.parentNode.appendChild(this.cloneNode(true))})
-    //         //     .attr('class', 'track-overlay')
-    //             .call(d3.drag()
-    //                     .on('start.interupt', () => {slider.interrupt()})
-    //                     .on('start drag', () => {
-    //                         currentValue = d3.event.x;
-    //                         updateDashboard(x.invert(currentValue));
-    //                     }));
-
-    // slider.insert('g', '.track-overlay')
-    //     .attr('class', 'ticks')
-    //     .attr('transform', `translate(0, 18)`)
-    //     .selectAll('text')
-    //         .data(await getListOfDates())
-    //         .enter()
-    //             .append('text')
-    //                 .attr('x', horScale)
-    //                 .attr('y', 10)
-    //                 .attr('text-anchor', 'middle')
-    //                 .text((d) => d);
-
-    // const handle = slider.insert('circle', '.track-overlay')
-    //                         .attr('class', 'handle')
-    //                         .attr('r', 9);
-
-    // const label = slider.append('text')
-    //                     .attr('class', 'label')
-    //                     .attr('text-anchor', 'middle')
-    //                     .text(datesExtent[1])
-    //                     .attr('transform', `translate(${horScale.range[1]}, -25)`);
-
-    // // play button
-    // playButton.on('click', () => {
-    //     const button = d3.select(this);
-    //     if (button.text() == 'Pause') {
-    //         moving = false;
-    //         timer = 0
-    //         clearInterval(timer);
-    //         button.text('Play');
-    //     } else {
-    //         moving = true;
-    //         timer = setInterval(step, 100);
-    //         button.text('Pause');
-    //     }
-    // });
-
-    // function prepare(d) {
-    //     d.id = d.id;
-    //     d.date = parseDate(d.date);
-    //     return d;
-    // }
+    d3.select('.ticks-slider-43').text('1980');
+    d3.select('.ticks-slider-44').text('1985');
 }
