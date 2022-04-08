@@ -1,3 +1,8 @@
+/**
+ * @module module for plotting the line(s) graph
+ * @copyright Jonathan Lee 2022
+ */
+
 import { getHDIData, getGDPData, getPopulationData, getListOfCountry } from './data.js';
 import { addText, blurAllScatter } from './scatter.js';
 
@@ -62,10 +67,6 @@ export async function setupLine() {
         .attr('transform', `translate(0, ${linePlotHeight})`)
         .attr('fill', 'white')
         .call(d3.axisBottom(horScale));
-        // .selectAll('text')
-        //         .attr('dy', '.35em')
-        //         .attr('transform', 'rotate(-45)')
-        //         .style('text-anchor', 'end');
     linePlotSvg.append('g')
         .attr('class', 'line-left-axes')
         .attr('fill', 'white')
@@ -81,6 +82,7 @@ export async function setupLine() {
                         .x(d => horScale(new Date(d.Year)))
                         .y(d => verScale(d.hdi));
 
+        // hdi values for this year
         const hdiYear = data.find(d => d.Year == window.year).hdi;
 
         // add the path
@@ -140,6 +142,10 @@ export async function setupLine() {
     }
 }
 
+/**
+ * general function to highlight a specific line
+ * @param {*} code country code to identify line from line id
+ */
 export function selectThisLine(code) {
     // select the line
     d3.select(`#hdi-line-${code}`)

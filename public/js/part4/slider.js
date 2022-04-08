@@ -1,6 +1,12 @@
-import { getHDIDataSlider, getListOfDates } from './data.js'
+/**
+ * @module module aims at setting up slider 
+ * @copyright Jonathan Lee 2022
+ */
+
+import { getHDIDataSlider } from './data.js'
 import { updateDashboard } from './functions.js';
 
+// hdi data
 const hdiData = await getHDIDataSlider();
 
 /**

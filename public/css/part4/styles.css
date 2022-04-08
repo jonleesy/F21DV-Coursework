@@ -67,10 +67,24 @@ p, a, text, line, path, h2 {
 }
 
 .footer-container {
-    grid-area: 5 / 1 / 6 / 3;
+    grid-area: 5 / 1 / 6 / 4;
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #3a3a3a;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
-.footer-container > p {
+.inner-footer-container > p {
+    color: #9c9c9c;
+    font-size: small;
+}
+
+#footer-href {
     color: #9c9c9c;
 }
 

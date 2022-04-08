@@ -1,3 +1,8 @@
+/**
+ * @module module aims at setting up the map, and updating it on change
+ * @copyright Jonathan Lee 2022
+ */
+
 // local imports
 import { getGeoJson, getHDIData, getGDPData, getPopulationData } from './data.js';
 import { selectThisLine } from './line.js';
@@ -6,6 +11,7 @@ import { blurAllScatter, addText } from './scatter.js';
 // global varianles
 window.year = 2017;
 
+// data constants
 const gdpData = await getGDPData();
 const populationData = await getPopulationData();
 
@@ -44,6 +50,7 @@ function updateTooltip(name, value) {
  * @param {*} e event
  */                        
 function mouseOver(e) {
+    // get the country id
     const { target } = e;
     const countryid = target.feature.id;
 
@@ -100,7 +107,7 @@ function mouseLeave(e) {
 
     // unblur scatter
     d3.selectAll('.scatter-circle')
-        .attr('fillOpacity', 0.6);
+        .attr('opacity', 0.6);
 
     // remove scatter tooltip
     d3.selectAll('.scatter-temp-text')
@@ -114,6 +121,38 @@ function mouseLeave(e) {
 }
 
 /**
+ * function sets the default map style
+ * @param {*} feature 
+ * @returns 
+ */
+function defaultMapSettings(feature) {
+    // use the layer's country code to filter for data
+    const countryCode = feature.id;
+    const countryLatestHdi = hdiValues.find(d => d.Code == countryCode);
+
+    // 'undefined' check
+    const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
+
+    // Return styling
+    return {
+        color: colour, weight: 0.5, fillOpacity: 0.6, className: `map-path-${countryCode}`
+    };
+}
+
+/**
+ * default function for map's onEachFeature
+ * @param {*} _ dummy 
+ * @param {*} layer on maps
+ */
+function onEachFeature(_, layer) {
+    layer.on({
+        // click: onClick,
+        mouseover: mouseOver,
+        mouseout: mouseLeave
+    })
+}
+
+/**
  * function updates the map
  */
 export async function updateMap() {
@@ -123,26 +162,8 @@ export async function updateMap() {
     // add mapjson layer
     dataLayer.remove();
     dataLayer = L.geoJson(geoJsonData, {
-        onEachFeature: (_, L) => {
-            L.on({
-                // click: onClick,
-                mouseover: mouseOver,
-                mouseout: mouseLeave
-            })
-        },
-        style: f => {
-            // use the layer's country code to filter for data
-            const countryCode = f.id;
-            const countryLatestHdi = hdiValues.find(d => d.Code == countryCode);
-
-            // 'undefined' check
-            const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
-
-            // Return styling
-            return {
-                color: colour, weight: 0.5, fillOpacity: 0.6, className: `map-path-${countryCode}`
-            };
-        }
+        onEachFeature: onEachFeature,
+        style: defaultMapSettings
         });
     dataLayer.addTo(map);
 
@@ -173,26 +194,8 @@ export async function setupMap() {
 
     // add mapjson layer
     dataLayer = L.geoJson(geoJsonData, {
-        onEachFeature: (_, L) => {
-            L.on({
-                // click: onClick,
-                mouseover: mouseOver,
-                mouseout: mouseLeave
-            })
-        },
-        style: f => {
-            // use the layer's country code to filter for data
-            const countryCode = f.id;
-            const countryLatestHdi = hdiValues.find(d => d.Code == countryCode);
-
-            // 'undefined' check
-            const colour = (countryLatestHdi) ? mapColourScale(countryLatestHdi.hdi) : 'grey';
-
-            // Return styling
-            return {
-                color: colour, weight: 0.5, fillOpacity: 0.6, className: `map-path-${countryCode}`
-            };
-        }
+        onEachFeature: onEachFeature,
+        style: defaultMapSettings
         });
     dataLayer.addTo(map);
 

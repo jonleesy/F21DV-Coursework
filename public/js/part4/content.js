@@ -1,3 +1,13 @@
+/**
+ * @module this module adds description and text to the content section
+ * @copyright Jonathan Lee 2022
+ */
+
+/**
+ * this function systematically adds div (or paragraph) to the content section
+ * @param {*} text text to add
+ * @param {*} type ttext size, h1, h2, h3,... etc. default: 'p'
+ */
 function addText(text, type = 'p') {
     d3.select('.content-container')
         .append('div')
@@ -5,10 +15,14 @@ function addText(text, type = 'p') {
                 .html(text);
 }
 
+// href constants
 const covid19 = `<a class="active" href='../../html/part3/main.html'>Covid-19</a>`;
-const ref1 = `<a href='https://datatopics.worldbank.org/world-development-indicators/stories/statistical-performance-indicators.html'>
-            [1]</a>`;
+const ref1 = `<a href='https://datatopics.worldbank.org/world-development-indicators/stories/statistical-performance-indicators.html'>[1]</a>`;
+const ref2 = `<a href='https://medium.com/4thought-studios/human-development-index-the-new-gdp-34ce23fc8bd1'>[2]</a>`;
 
+/**
+ * main function for the content module
+ */
 export function setupContent() {
     addText(`*<em>Population Density (people per sq. km of land area), GDP/Capita (US \$)</em>`)
     addText('Human Development Index (HDI) vs GDP Per Capita', 'h2');
@@ -23,7 +37,7 @@ export function setupContent() {
             levels react to such events, we should all be made aware of the different development
             levels of a country.`);
     addText(`HDI, as its name suggest, emphasises on the human development, and factors in the
-            quality of life, and not just 'how much money the country can make'. For instance,
+            quality of life, and not just 'how much money the country can make' ${ref2}. For instance,
             Korea and The Bahamas both have GDP/Capita of around \$30,000, but Korea is miles ahead
             in terms of its HDI value. This lay terms, it means that the Koreans are earning good
             amount of money, yet they also have a good quality of life. Another example would be

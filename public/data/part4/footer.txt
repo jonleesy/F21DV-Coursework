@@ -1,1 +1,4 @@
-F21DV Data Visualisation and Analytics Lab 4. Jonathan Lee (H00255553)
+<p><em>F21DV Data Visualisation and Analytics Lab 4. Jonathan Lee (H00255553)</em></p>
+<p><strong>Datasets:</strong>
+[1] World Bank, <a id='footer-href' href='https://data.worldbank.org/summary-terms-of-use'>World Development Indicators</a>: Used under CC BY 4.0 License.
+[2] Max Roser (2014) - "Human Development Index (HDI)". Published online at OurWorldInData.org. Retrieved from: <a id='footer-href' href=''https://ourworldindata.org/human-development-index'>'https://ourworldindata.org/human-development-index'</a>: Used under CC BY License.</p>

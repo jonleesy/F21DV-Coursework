@@ -1,3 +1,8 @@
+/**
+ * @module this module sets up and controls the scatter plot section of the dashboard
+ * @copyright Jonathan Lee 2022
+ */
+
 import { getGDPData, getHDIData, getPopulationData } from './data.js';
 import { selectThisLine } from './line.js';
 
@@ -9,6 +14,8 @@ let colorScale;
 let colorPopScale;
 let circleScale;
 let margin;
+
+// data import
 const hdiData = await getHDIData();
 const gdpData = await getGDPData();
 const populationData = await getPopulationData();
@@ -208,13 +215,21 @@ export async function updateScatter() {
     
 }
 
+/**
+ * function can be called and would blur all scatter plot's dots
+ */
 export function blurAllScatter() {
     // blur everything
     d3.selectAll('.scatter-circle')
         .attr('opacity', 0.1);
 }
 
-// function to add text to tooltip
+/**
+ * function to add text to tooltip
+ * @param {*} selector where to add this
+ * @param {*} text what text to add on the ith line
+ * @param {*} i the ith line to add
+ */
 export function addText(selector, text, i) {
     selector.append('text')
             .attr('class', 'scatter-temp-text')

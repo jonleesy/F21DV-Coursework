@@ -1,3 +1,8 @@
+/**
+ * @module this module includes functions used to setup the page. 
+ * @copyright Jonathan Lee 2022
+ */
+
 import { updateMap } from './map.js';
 import { updateScatter } from './scatter.js';
 
@@ -15,6 +20,9 @@ function addDiv(targetClass, className = '', idName = '') {
         .attr('id', idName);
 }
 
+/**
+ * main entry point to the module
+ */
 export async function setup() {
     // add the divs
     addDiv('body', 'grid-container');
@@ -24,20 +32,26 @@ export async function setup() {
     addDiv('.main-container', 'main-container-div', 'bottom-right-container');
     addDiv('.main-container', 'year-container');
     addDiv('.main-container', 'content-container');
-    addDiv('.main-container', 'footer-container');
 
     // add footer
     await d3.text('../../data/part4/footer.txt').then((d) => {
-        addDiv('.grid-container', 'footer-container', '');
+        addDiv('body', 'footer-container', '');
         d3.select('.footer-container')
-            .append('p')
-            .append('em')
-            .text(d);
+            .append('div')
+            .attr('class', 'inner-footer-container')
+            .html(d);
     })
 }
 
+/**
+ * functions aims at updating the charts and maps upon slider movement
+ * @param {*} newYear the updated year from the slider
+ */
 export function updateDashboard(newYear) {
+    // set a new year
     window.year = newYear;
+
+    // update functions.
     updateScatter();
     updateMap();
 }

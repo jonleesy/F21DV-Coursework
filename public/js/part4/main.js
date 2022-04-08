@@ -1,3 +1,8 @@
+/** 
+ * @module main entry point for the application
+ * @copyright Jonathan Lee 2022
+ */
+
 import { setupContent } from './content.js';
 import { setup } from './functions.js';
 import { setupLine } from './line.js';
