@@ -16,6 +16,10 @@ export async function getGeoJson() {
 }
 
 export async function getHDIData() {
+    return d3.csv('../../data/part4/hdiori.csv');
+}
+
+export async function getHDIDataSlider() {
     return d3.csv('../../data/part4/hdi.csv');
 }
 
@@ -40,4 +44,8 @@ export async function getListOfCountry() {
     }
 
     return uniqueCode;
+}
+
+export async function getListOfDates() {
+    return d3.csv('../../data/part4/dates.csv');
 }

@@ -54,6 +54,12 @@ p, a, text, line, path {
     width: 500px;
 }
 
+.year-container {
+    grid-area: 3 / 1 / 4 / 3;
+    width: 1200px;
+    height: 100px
+}
+
 /* container that shows content on scroll */
 .content-container {
     grid-area: 3 / 2 / 4 / 3;

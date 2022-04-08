@@ -1,5 +1,5 @@
-import { updateMap } from "./map.js";
-import { updateScatter } from "./scatter.js";
+import { updateMap } from './map.js';
+import { updateScatter } from './scatter.js';
 
 /**
  * Function adds a div systematically to an existing div
@@ -22,7 +22,7 @@ export async function setup() {
     addDiv('.main-container', 'main-container-div', 'map-container');
     addDiv('.main-container', 'main-container-div', 'top-right-container');
     addDiv('.main-container', 'main-container-div', 'bottom-right-container');
-    addDiv('.grid-container', 'year-container');
+    addDiv('.main-container', 'year-container');
 
     // add footer
     await d3.text('../../data/part4/footer.txt').then((d) => {
